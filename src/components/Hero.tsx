@@ -117,7 +117,7 @@ const Hero = () => {
                   fontSize: '14px',
                   lineHeight: '20px',
                   padding: '16px 32px',
-                  border: '2px solid white',
+                  border: '1px solid white', // Changed from 2px to 1px for smaller border
                 }}
               >
                 Request Access
