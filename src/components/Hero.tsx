@@ -9,7 +9,6 @@ const Hero = () => {
   const [lottieData, setLottieData] = useState<any>(null);
 
   useEffect(() => {
-    // Fetch the Lottie animation data
     fetch('/loop-header.lottie')
       .then(response => response.json())
       .then(data => setLottieData(data))
@@ -20,7 +19,6 @@ const Hero = () => {
     const handleMouseMove = (e: MouseEvent) => {
       if (!containerRef.current || !imageRef.current) return;
       
-      // Only apply 3D effect on desktop, not on mobile
       if (window.innerWidth < 768) return;
       
       const {
@@ -32,7 +30,6 @@ const Hero = () => {
       const x = (e.clientX - left) / width - 0.5;
       const y = (e.clientY - top) / height - 0.5;
 
-      // Slightly reduced rotation effect for smoother movement
       imageRef.current.style.transform = `perspective(1000px) rotateY(${x * 2.5}deg) rotateX(${-y * 2.5}deg) scale3d(1.02, 1.02, 1.02)`;
     };
     
@@ -81,11 +78,9 @@ const Hero = () => {
         padding: '120px 20px 60px'
       }}
     >
-      {/* Background gradient */}
       <div className="absolute -top-[10%] -right-[5%] w-1/2 h-[70%] bg-pulse-gradient opacity-20 blur-3xl rounded-full"></div>
       
       <div className="container px-4 sm:px-6 lg:px-8" ref={containerRef}>
-        {/* Changed from grid to flex for side-by-side layout */}
         <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-center">
           <div className="w-full lg:w-1/2">
             <div 
@@ -126,7 +121,7 @@ const Hero = () => {
                   fontSize: '14px',
                   lineHeight: '20px',
                   padding: '16px 32px',
-                  border: '1px solid white', // Changed from 2px to 1px for smaller border
+                  border: '1px solid white',
                 }}
               >
                 Request Access
@@ -165,7 +160,6 @@ const Hero = () => {
         </div>
       </div>
       
-      {/* Decorative element */}
       <div className="hidden lg:block absolute bottom-0 left-1/4 w-64 h-64 bg-pulse-100/30 rounded-full blur-3xl -z-10 parallax" data-speed="0.05"></div>
     </section>
   );
