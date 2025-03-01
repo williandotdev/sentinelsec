@@ -45,7 +45,7 @@ const HumanoidSection = () => {
         <div className="container px-6 lg:px-8 mx-auto h-full flex flex-col">
           <div className="mb-2 md:mb-3">
             <div className="flex items-center gap-4 mb-2 md:mb-2">
-              <div className="pulse-chip opacity-0 animate-fade-in" style={{
+              <div className="pulse-chip opacity-0 animate-fade-in p-2" style={{
               animationDelay: "0.1s"
             }}>
                 <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-pulse-500 text-white mr-2">02</span>
