@@ -1,11 +1,20 @@
-
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 import { ArrowRight } from "lucide-react";
+import LottieAnimation from "./LottieAnimation";
 
 const Hero = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const imageRef = useRef<HTMLImageElement>(null);
+  const [lottieData, setLottieData] = useState<any>(null);
+
+  useEffect(() => {
+    // Fetch the Lottie animation data
+    fetch('/loop-header.lottie')
+      .then(response => response.json())
+      .then(data => setLottieData(data))
+      .catch(error => console.error("Error loading Lottie animation:", error));
+  }, []);
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -127,17 +136,31 @@ const Hero = () => {
           </div>
           
           <div className="w-full lg:w-1/2 relative mt-8 lg:mt-0">
-            <div className="absolute inset-0 bg-dark-900 rounded-3xl -z-10 shadow-xl"></div>
-            <div className="relative transition-all duration-500 ease-out overflow-hidden rounded-3xl shadow-2xl">
-              <img 
-                ref={imageRef} 
-                src="/lovable-uploads/5663820f-6c97-4492-9210-9eaa1a8dc415.png" 
-                alt="Atlas Robot" 
-                className="w-full h-auto object-cover transition-transform duration-500 ease-out" 
-                style={{ transformStyle: 'preserve-3d' }} 
-              />
-              <div className="absolute inset-0" style={{ backgroundImage: 'url("/hero-image.jpg")', backgroundSize: 'cover', backgroundPosition: 'center', mixBlendMode: 'overlay', opacity: 0.5 }}></div>
-            </div>
+            {lottieData ? (
+              <div className="relative z-10 animate-fade-in" style={{ animationDelay: "0.9s" }}>
+                <LottieAnimation 
+                  animationPath={lottieData} 
+                  className="w-full h-auto max-w-lg mx-auto"
+                  loop={true}
+                  autoplay={true}
+                  speed={0.8}
+                />
+              </div>
+            ) : (
+              <>
+              <div className="absolute inset-0 bg-dark-900 rounded-3xl -z-10 shadow-xl"></div>
+              <div className="relative transition-all duration-500 ease-out overflow-hidden rounded-3xl shadow-2xl">
+                <img 
+                  ref={imageRef} 
+                  src="/lovable-uploads/5663820f-6c97-4492-9210-9eaa1a8dc415.png" 
+                  alt="Atlas Robot" 
+                  className="w-full h-auto object-cover transition-transform duration-500 ease-out" 
+                  style={{ transformStyle: 'preserve-3d' }} 
+                />
+                <div className="absolute inset-0" style={{ backgroundImage: 'url("/hero-image.jpg")', backgroundSize: 'cover', backgroundPosition: 'center', mixBlendMode: 'overlay', opacity: 0.5 }}></div>
+              </div>
+              </>
+            )}
           </div>
         </div>
       </div>
