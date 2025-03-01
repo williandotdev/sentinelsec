@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { toast } from "sonner";
 
@@ -40,9 +39,14 @@ const DetailsSection = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Left Card - The Details */}
           <div className="rounded-3xl overflow-hidden shadow-elegant">
-            {/* Card Header with gradient */}
+            {/* Card Header with background image instead of gradient */}
             <div 
-              className="relative h-64 bg-gradient-to-br from-dark-900 via-dark-800 to-pulse-600 p-8 flex items-end"
+              className="relative h-64 p-8 flex items-end"
+              style={{
+                backgroundImage: "url('/background-section3.png')",
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+              }}
             >
               <h2 className="text-3xl font-display text-white font-bold">
                 The details
