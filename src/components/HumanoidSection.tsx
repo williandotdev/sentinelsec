@@ -22,8 +22,12 @@ const HumanoidSection = () => {
         </div>
         
         <div className="relative w-full h-[500px] rounded-3xl overflow-hidden">
-          {/* Background gradient */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#121654] to-[#4799D9] z-0"></div>
+          {/* Replace gradient with background image */}
+          <div className="absolute inset-0 z-0" style={{
+            backgroundImage: "url('/background-section1.png')",
+            backgroundSize: "cover",
+            backgroundPosition: "center"
+          }}></div>
           
           {/* Button positioned in top right corner */}
           <div className="absolute top-4 right-4 z-20">
