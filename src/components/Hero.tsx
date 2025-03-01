@@ -15,7 +15,8 @@ const Hero = () => {
       const x = (e.clientX - left) / width - 0.5;
       const y = (e.clientY - top) / height - 0.5;
       
-      imageRef.current.style.transform = `perspective(1000px) rotateY(${x * 3}deg) rotateX(${-y * 3}deg) scale3d(1.02, 1.02, 1.02)`;
+      // Slightly reduced rotation effect for smoother movement
+      imageRef.current.style.transform = `perspective(1000px) rotateY(${x * 2.5}deg) rotateX(${-y * 2.5}deg) scale3d(1.02, 1.02, 1.02)`;
     };
     
     const handleMouseLeave = () => {
