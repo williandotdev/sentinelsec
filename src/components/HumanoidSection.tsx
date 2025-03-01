@@ -6,15 +6,16 @@ const HumanoidSection = () => {
   const cardsContainerRef = useRef<HTMLDivElement>(null);
   const [activeCardIndex, setActiveCardIndex] = useState(0);
   const [isIntersecting, setIsIntersecting] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
   const ticking = useRef(false);
   const lastScrollY = useRef(0);
 
-  // More responsive timing function with shorter duration
+  // Refined animation timing with more natural easing curve
   const cardStyle = {
     height: '60vh',
     maxHeight: '600px',
     borderRadius: '20px',
-    transition: 'transform 0.5s cubic-bezier(0.19, 1, 0.22, 1), opacity 0.5s cubic-bezier(0.19, 1, 0.22, 1)',
+    transition: 'transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1), opacity 0.4s cubic-bezier(0.4, 0.0, 0.2, 1)',
     willChange: 'transform, opacity'
   };
 
@@ -32,7 +33,7 @@ const HumanoidSection = () => {
       observer.observe(sectionRef.current);
     }
     
-    // Optimized scroll handler using requestAnimationFrame
+    // Optimized scroll handler using requestAnimationFrame with smoother progress calculation
     const handleScroll = () => {
       if (!ticking.current) {
         lastScrollY.current = window.scrollY;
@@ -42,18 +43,21 @@ const HumanoidSection = () => {
           
           const sectionRect = sectionRef.current.getBoundingClientRect();
           const viewportHeight = window.innerHeight;
-          const totalScrollDistance = viewportHeight * 2;
+          const totalScrollDistance = viewportHeight * 1.8; // Reduced for more sensitivity
           
-          // Calculate the scroll progress
+          // Calculate the scroll progress with smoother curve
           let progress = 0;
           if (sectionRect.top <= 0) {
-            progress = Math.min(1, Math.max(0, Math.abs(sectionRect.top) / totalScrollDistance));
+            // Apply easing to the progress value
+            const rawProgress = Math.min(1, Math.max(0, Math.abs(sectionRect.top) / totalScrollDistance));
+            progress = easeInOutCubic(rawProgress);
+            setScrollProgress(progress);
           }
           
-          // Determine which card should be visible based on progress
-          if (progress >= 0.66) {
+          // Use more precise thresholds for smoother transitions
+          if (progress >= 0.6) {
             setActiveCardIndex(2);
-          } else if (progress >= 0.33) {
+          } else if (progress >= 0.25) {
             setActiveCardIndex(1);
           } else {
             setActiveCardIndex(0);
@@ -64,6 +68,11 @@ const HumanoidSection = () => {
         
         ticking.current = true;
       }
+    };
+
+    // Easing function for smoother progress
+    const easeInOutCubic = (x: number): number => {
+      return x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -77,10 +86,64 @@ const HumanoidSection = () => {
     };
   }, []);
 
-  // Card visibility based on active index instead of direct scroll progress
-  const isFirstCardVisible = isIntersecting;
-  const isSecondCardVisible = activeCardIndex >= 1;
-  const isThirdCardVisible = activeCardIndex >= 2;
+  // Calculate dynamic transform values based on scroll progress for smoother transitions
+  const getCardTransform = (cardIndex: number) => {
+    if (cardIndex === 0) { // First card
+      const translateY = 90 - (scrollProgress * 30); // More gradual movement
+      const scale = 0.9 + (scrollProgress * 0.05); // Subtle scale increase
+      const opacity = 1 - (scrollProgress * 1.2); // Fade out slightly faster
+      return {
+        transform: `translateY(${translateY}px) scale(${scale})`,
+        opacity: Math.max(0, opacity),
+        zIndex: 10
+      };
+    } else if (cardIndex === 1) { // Second card
+      let translateY, scale, opacity;
+      
+      if (scrollProgress < 0.25) { // Before becoming active
+        translateY = 65 - (scrollProgress * 40);
+        scale = 0.92;
+        opacity = 0.2 + (scrollProgress * 3.2); // Smoother fade in
+      } else if (scrollProgress >= 0.6) { // After being active
+        translateY = 45 - ((scrollProgress - 0.6) * 60);
+        scale = 0.95 - ((scrollProgress - 0.6) * 0.1);
+        opacity = 1 - ((scrollProgress - 0.6) * 2.5); // Smoother fade out
+      } else { // While active
+        translateY = 45 - ((scrollProgress - 0.25) * 10); // Small movement while active
+        scale = 0.95 + ((scrollProgress - 0.25) * 0.05);
+        opacity = 1;
+      }
+      
+      return {
+        transform: `translateY(${translateY}px) scale(${scale})`,
+        opacity: Math.max(0, opacity),
+        zIndex: 20
+      };
+    } else { // Third card
+      let translateY, scale, opacity;
+      
+      if (scrollProgress < 0.4) { // Before becoming active
+        translateY = 30;
+        scale = 0.97;
+        opacity = 0.2 + (scrollProgress * 2); // Gradual fade in
+      } else { // While becoming active
+        translateY = 30 - ((scrollProgress - 0.4) * 30); // Smooth movement to final position
+        scale = 0.97 + ((scrollProgress - 0.4) * 0.03);
+        opacity = 1;
+      }
+      
+      return {
+        transform: `translateY(${translateY}px) scale(${scale})`,
+        opacity: Math.max(0, Math.min(1, opacity)),
+        zIndex: 30
+      };
+    }
+  };
+
+  // Card visibility based on actual scroll progress instead of just active index
+  const isFirstCardVisible = isIntersecting && scrollProgress < 0.5;
+  const isSecondCardVisible = scrollProgress > 0.1;
+  const isThirdCardVisible = scrollProgress > 0.4;
 
   return (
     <div 
@@ -111,9 +174,8 @@ const HumanoidSection = () => {
               className={`absolute inset-0 overflow-hidden shadow-xl ${isFirstCardVisible ? 'animate-card-enter' : ''}`} 
               style={{
                 ...cardStyle,
-                zIndex: 10,
-                transform: `translateY(${isFirstCardVisible ? '90px' : '200px'}) scale(0.9)`,
-                opacity: isFirstCardVisible ? 0.9 : 0
+                ...getCardTransform(0),
+                pointerEvents: isFirstCardVisible ? 'auto' : 'none'
               }}
             >
               <div
@@ -146,10 +208,9 @@ const HumanoidSection = () => {
               className={`absolute inset-0 overflow-hidden shadow-xl ${isSecondCardVisible ? 'animate-card-enter' : ''}`} 
               style={{
                 ...cardStyle,
-                zIndex: 20,
-                transform: `translateY(${isSecondCardVisible ? activeCardIndex === 1 ? '55px' : '45px' : '200px'}) scale(0.95)`,
-                opacity: isSecondCardVisible ? 1 : 0,
-                pointerEvents: isSecondCardVisible ? 'auto' : 'none'
+                ...getCardTransform(1),
+                pointerEvents: isSecondCardVisible && activeCardIndex === 1 ? 'auto' : 'none',
+                animationDelay: "0.05s"
               }}
             >
               <div
@@ -182,10 +243,9 @@ const HumanoidSection = () => {
               className={`absolute inset-0 overflow-hidden shadow-xl ${isThirdCardVisible ? 'animate-card-enter' : ''}`} 
               style={{
                 ...cardStyle,
-                zIndex: 30,
-                transform: `translateY(${isThirdCardVisible ? activeCardIndex === 2 ? '15px' : '0' : '200px'}) scale(1)`,
-                opacity: isThirdCardVisible ? 1 : 0,
-                pointerEvents: isThirdCardVisible ? 'auto' : 'none'
+                ...getCardTransform(2),
+                pointerEvents: isThirdCardVisible && activeCardIndex === 2 ? 'auto' : 'none',
+                animationDelay: "0.1s"
               }}
             >
               <div
