@@ -93,6 +93,7 @@ const Hero = () => {
                 fontSize: '14px',
                 lineHeight: '20px',
                 padding: '20px 40px',
+                border: '2px solid white', // Added white border here
               }}>
                 Request Access
                 <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
