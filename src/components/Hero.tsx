@@ -61,8 +61,9 @@ const Hero = () => {
       <div className="absolute -top-[10%] -right-[5%] w-1/2 h-[70%] bg-pulse-gradient opacity-20 blur-3xl rounded-full"></div>
       
       <div className="container px-6 lg:px-8" ref={containerRef}>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center">
-          <div className="order-2 lg:order-1">
+        {/* Changed from grid to flex for side-by-side layout */}
+        <div className="flex flex-col lg:flex-row gap-12 lg:gap-8 items-center">
+          <div className="w-full lg:w-1/2">
             <div className="pulse-chip mb-6 opacity-0 animate-fade-in" style={{ animationDelay: "0.1s" }}>
               <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-pulse-500 text-white mr-2">01</span>
               <span>Purpose</span>
@@ -84,7 +85,7 @@ const Hero = () => {
             </div>
           </div>
           
-          <div className="order-1 lg:order-2 relative">
+          <div className="w-full lg:w-1/2 relative">
             <div className="absolute inset-0 bg-dark-900 rounded-3xl -z-10 shadow-xl"></div>
             <div className="relative transition-all duration-500 ease-out overflow-hidden rounded-3xl shadow-2xl">
               <img
