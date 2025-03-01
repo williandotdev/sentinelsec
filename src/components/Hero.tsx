@@ -1,3 +1,4 @@
+
 import React, { useEffect, useRef } from "react";
 import { cn } from "@/lib/utils";
 import { ArrowRight } from "lucide-react";
@@ -81,7 +82,16 @@ const Hero = () => {
             <div className="flex flex-col sm:flex-row gap-4 opacity-0 animate-fade-in" style={{
             animationDelay: "0.7s"
           }}>
-              <a href="#get-access" className="button-primary flex items-center justify-center group">
+              <a href="#get-access" className="flex items-center justify-center group" style={{
+                backgroundColor: '#FE5C02',
+                borderRadius: '1440px',
+                boxSizing: 'border-box',
+                color: '#FFFFFF',
+                cursor: 'pointer',
+                fontSize: '14px',
+                lineHeight: '20px',
+                padding: '20px 40px',
+              }}>
                 Request Access
                 <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
               </a>
