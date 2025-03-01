@@ -23,12 +23,13 @@ const HumanoidSection = () => {
         <div className="flex flex-col gap-6">
           {/* Card 1 */}
           <div className="relative w-full h-[600px] rounded-3xl overflow-hidden">
-            {/* Background image */}
-            <div className="absolute inset-0 z-0" style={{
-            backgroundImage: "url('/background-section1.png')",
-            backgroundSize: "cover",
-            backgroundPosition: "center"
-          }}></div>
+            {/* Repositioned background element with gradient overlay */}
+            <div className="absolute inset-0 z-0 bg-gradient-to-b from-pulse-900/40 to-dark-900/80" style={{
+              backgroundImage: "url('/background-section1.png')",
+              backgroundSize: "cover",
+              backgroundPosition: "top center",
+              backgroundBlendMode: "overlay"
+            }}></div>
             
             {/* Button positioned in top right corner */}
             <div className="absolute top-4 right-4 z-20">
@@ -46,14 +47,15 @@ const HumanoidSection = () => {
             </div>
           </div>
           
-          {/* Card 2 - Changed background to background-section2.png */}
+          {/* Card 2 */}
           <div className="relative w-full h-[600px] rounded-3xl overflow-hidden">
-            {/* Background image */}
-            <div className="absolute inset-0 z-0" style={{
-            backgroundImage: "url('/background-section2.png')",
-            backgroundSize: "cover",
-            backgroundPosition: "center"
-          }}></div>
+            {/* Repositioned background element with gradient overlay */}
+            <div className="absolute inset-0 z-0 bg-gradient-to-b from-pulse-900/40 to-dark-900/80" style={{
+              backgroundImage: "url('/background-section2.png')",
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              backgroundBlendMode: "overlay"
+            }}></div>
             
             {/* Button positioned in top right corner */}
             <div className="absolute top-4 right-4 z-20">
@@ -69,14 +71,15 @@ const HumanoidSection = () => {
             </div>
           </div>
           
-          {/* Card 3 - Changed background to background-section3.png */}
+          {/* Card 3 */}
           <div className="relative w-full h-[600px] rounded-3xl overflow-hidden">
-            {/* Background image */}
-            <div className="absolute inset-0 z-0" style={{
-            backgroundImage: "url('/background-section3.png')",
-            backgroundSize: "cover",
-            backgroundPosition: "center"
-          }}></div>
+            {/* Repositioned background element with gradient overlay */}
+            <div className="absolute inset-0 z-0 bg-gradient-to-b from-pulse-900/40 to-dark-900/80" style={{
+              backgroundImage: "url('/background-section3.png')",
+              backgroundSize: "cover",
+              backgroundPosition: "bottom center",
+              backgroundBlendMode: "overlay"
+            }}></div>
             
             {/* Button positioned in top right corner */}
             <div className="absolute top-4 right-4 z-20">
