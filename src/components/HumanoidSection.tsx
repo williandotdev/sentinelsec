@@ -1,3 +1,4 @@
+
 import React, { useEffect, useRef, useState } from "react";
 
 const HumanoidSection = () => {
@@ -14,16 +15,16 @@ const HumanoidSection = () => {
       const sectionHeight = rect.height;
       const windowHeight = window.innerHeight;
       
-      // Keep the sticky behavior consistent
-      const shouldBeSticky = sectionTop <= 0 && sectionTop > -sectionHeight * 2.5 + windowHeight;
+      // Make the section sticky when it reaches the top until scrolled past
+      const shouldBeSticky = sectionTop <= 0 && sectionTop > -sectionHeight + windowHeight;
       setIsSticky(shouldBeSticky);
       
-      // Improve scroll progress calculation to ensure smooth transitions
+      // Calculate scroll progress for card transitions only
       let progress = 0;
       
-      if (sectionTop <= windowHeight * 0.9) {
-        // Adjust multiplier to create a more linear progression through all cards
-        progress = Math.min(1, Math.max(0, (windowHeight * 0.9 - sectionTop) / (sectionHeight * 1.8)));
+      if (sectionTop <= 0) {
+        // Create a more consistent progression through all cards
+        progress = Math.min(1, Math.max(0, -sectionTop / (sectionHeight - windowHeight)));
       }
       
       console.log("Scroll progress:", progress);
@@ -37,22 +38,22 @@ const HumanoidSection = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
   
-  // Adjust thresholds to create equal spacing between card transitions
-  const secondCardVisible = scrollProgress >= 0.15;
-  const thirdCardVisible = scrollProgress >= 0.40; // Lower threshold for third card
+  // Define thresholds for card visibility with equal spacing
+  const secondCardVisible = scrollProgress >= 0.25;
+  const thirdCardVisible = scrollProgress >= 0.5;
   
   return (
     <section 
-      className={`w-full overflow-hidden py-16 md:py-24 relative ${isSticky ? 'sticky top-0 z-50' : ''}`} 
+      className="w-full py-16 md:py-24 min-h-screen sticky top-0 z-50" 
       id="why-humanoid" 
       ref={sectionRef}
       style={{ 
-        height: isSticky ? '100vh' : 'auto',
-        minHeight: '250vh', // Keep increased section height for longer scrolling
-        transition: 'height 0.3s cubic-bezier(0.4, 0, 0.2, 1)'
+        height: '100vh',
+        overflow: 'hidden'
       }}
     >
-      <div className="container px-6 lg:px-8 mx-auto">
+      {/* Static section header - always visible */}
+      <div className="container px-6 lg:px-8 mx-auto relative">
         <div className="mb-8">
           <div className="flex items-center gap-4 mb-4">
             <div className="pulse-chip opacity-0 animate-fade-in" style={{
@@ -68,16 +69,13 @@ const HumanoidSection = () => {
           </h2>
         </div>
         
-        {/* Stacking Cards Container - Make this sticky within the sticky section for double stickiness */}
-        <div className="relative h-[700px] perspective-1000" style={{
-          position: isSticky ? 'sticky' : 'relative',
-          top: isSticky ? '10vh' : 'auto'
-        }}>
+        {/* Cards Container - Cards move based on scroll progress */}
+        <div className="relative h-[700px] perspective-1000">
           {/* Base Card - Always visible at the bottom of the stack */}
           <div 
             className="absolute w-full h-[600px] rounded-3xl overflow-hidden will-change-transform"
             style={{
-              zIndex: 10, // Always at the bottom
+              zIndex: 10,
               transform: `scale(0.9)`,
               opacity: 0.9,
               transition: 'transform 1.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 1.5s cubic-bezier(0.16, 1, 0.3, 1)'
@@ -142,7 +140,7 @@ const HumanoidSection = () => {
             </div>
           </div>
           
-          {/* Third Card - Appears on more scroll - Fixed to match behavior of other cards */}
+          {/* Third Card - Appears on more scroll */}
           <div 
             className="absolute w-full h-[600px] rounded-3xl overflow-hidden will-change-transform" 
             style={{
@@ -178,6 +176,9 @@ const HumanoidSection = () => {
           </div>
         </div>
       </div>
+      
+      {/* Spacer div to allow scrolling for the card transitions */}
+      <div style={{ height: '100vh' }}></div>
     </section>
   );
 };
