@@ -12,24 +12,26 @@ const Navbar = () => {
       setIsScrolled(window.scrollY > 10);
     };
     
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+    // Prevent background scrolling when menu is open
+    document.body.style.overflow = !isMenuOpen ? 'hidden' : '';
   };
 
   return (
     <header
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 py-4 transition-all duration-300",
+        "fixed top-0 left-0 right-0 z-50 py-3 sm:py-4 transition-all duration-300",
         isScrolled 
-          ? "bg-white/80 backdrop-blur-md shadow-sm py-3" 
+          ? "bg-white/80 backdrop-blur-md shadow-sm" 
           : "bg-transparent"
       )}
     >
-      <div className="container flex items-center justify-between">
+      <div className="container flex items-center justify-between px-4 sm:px-6 lg:px-8">
         <a 
           href="#" 
           className="flex items-center space-x-2"
@@ -38,7 +40,7 @@ const Navbar = () => {
           <img 
             src="/logo.svg" 
             alt="Pulse Robot Logo" 
-            className="h-8" 
+            className="h-7 sm:h-8" 
           />
         </a>
 
@@ -55,34 +57,43 @@ const Navbar = () => {
           onClick={toggleMenu}
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
         >
-          {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          {isMenuOpen ? <X size={22} /> : <Menu size={22} />}
         </button>
       </div>
 
       {/* Mobile Navigation */}
       <div className={cn(
-        "fixed inset-0 z-40 bg-white flex flex-col pt-20 px-6 md:hidden transition-all duration-300 ease-in-out",
+        "fixed inset-0 z-40 bg-white flex flex-col pt-16 px-6 md:hidden transition-all duration-300 ease-in-out",
         isMenuOpen ? "opacity-100 translate-x-0" : "opacity-0 translate-x-full pointer-events-none"
       )}>
-        <nav className="flex flex-col space-y-6 items-center">
+        <nav className="flex flex-col space-y-6 items-center mt-4">
           <a 
             href="#" 
             className="text-xl font-medium" 
-            onClick={() => setIsMenuOpen(false)}
+            onClick={() => {
+              setIsMenuOpen(false);
+              document.body.style.overflow = '';
+            }}
           >
             Home
           </a>
           <a 
             href="#about" 
             className="text-xl font-medium" 
-            onClick={() => setIsMenuOpen(false)}
+            onClick={() => {
+              setIsMenuOpen(false);
+              document.body.style.overflow = '';
+            }}
           >
             About
           </a>
           <a 
             href="#contact" 
             className="text-xl font-medium" 
-            onClick={() => setIsMenuOpen(false)}
+            onClick={() => {
+              setIsMenuOpen(false);
+              document.body.style.overflow = '';
+            }}
           >
             Contact
           </a>

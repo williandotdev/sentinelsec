@@ -39,7 +39,7 @@ const HumanoidSection = () => {
   // Common card styling
   const cardStyle = {
     height: '60vh',                 // Reduced to 60vh for better fit
-    maxHeight: '600px',             // Reduced max height
+    maxHeight: '500px',             // Further reduced max height for mobile
     borderRadius: '20px',           // Increased border radius for more modern look
     transition: 'transform 1.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 1.5s cubic-bezier(0.16, 1, 0.3, 1)'
   };
@@ -54,12 +54,12 @@ const HumanoidSection = () => {
     >
       {/* Fixed content container that actually sticks */}
       <section 
-        className="w-full h-screen py-10 md:py-16 sticky top-0 overflow-hidden bg-white"
+        className="w-full h-screen py-6 md:py-10 lg:py-16 sticky top-0 overflow-hidden bg-white"
         id="why-humanoid"
       >
-        <div className="container px-6 lg:px-8 mx-auto h-full flex flex-col">
-          <div className="mb-4 md:mb-6">
-            <div className="flex items-center gap-4 mb-2 md:mb-4">
+        <div className="container px-4 sm:px-6 lg:px-8 mx-auto h-full flex flex-col">
+          <div className="mb-3 md:mb-6">
+            <div className="flex items-center gap-3 md:gap-4 mb-2 md:mb-4">
               <div className="pulse-chip opacity-0 animate-fade-in" style={{
                 animationDelay: "0.1s"
               }}>
@@ -68,7 +68,7 @@ const HumanoidSection = () => {
               </div>
             </div>
             
-            <h2 className="section-title text-3xl sm:text-4xl md:text-5xl font-display font-bold mb-2 md:mb-4">
+            <h2 className="section-title text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-display font-bold mb-2 md:mb-4">
               Why Humanoid
             </h2>
           </div>
@@ -84,7 +84,7 @@ const HumanoidSection = () => {
               style={{
                 ...cardStyle,
                 zIndex: 10,
-                transform: `translateY(${scrollProgress <= 0.33 ? 90 : 90}px) scale(0.9)`,
+                transform: `translateY(90px) scale(0.9)`, // Fixed position regardless of scroll progress
                 opacity: 0.9,
               }}
             >
@@ -97,15 +97,15 @@ const HumanoidSection = () => {
               }}></div>
               
               {/* Button positioned in top right corner */}
-              <div className="absolute top-4 right-4 z-20">
-                <div className="inline-flex items-center justify-center px-4 py-2 rounded-full bg-white/20 backdrop-blur-sm text-white">
-                  <span className="text-sm font-medium">The vision</span>
+              <div className="absolute top-2 sm:top-4 right-2 sm:right-4 z-20">
+                <div className="inline-flex items-center justify-center px-3 sm:px-4 py-1 sm:py-2 rounded-full bg-white/20 backdrop-blur-sm text-white">
+                  <span className="text-xs sm:text-sm font-medium">The vision</span>
                 </div>
               </div>
               
-              <div className="relative z-10 p-5 sm:p-6 md:p-8 h-full flex items-center">
+              <div className="relative z-10 p-3 sm:p-5 md:p-6 lg:p-8 h-full flex items-center">
                 <div className="max-w-lg">
-                  <h3 className="text-xl sm:text-2xl md:text-3xl font-display text-white font-bold leading-tight mb-4">
+                  <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-display text-white font-bold leading-tight mb-2 sm:mb-4">
                     We're giving AI a way to navigate the physical world
                   </h3>
                 </div>
@@ -132,15 +132,15 @@ const HumanoidSection = () => {
               }}></div>
               
               {/* Button positioned in top right corner */}
-              <div className="absolute top-4 right-4 z-20">
-                <div className="inline-flex items-center justify-center px-4 py-2 rounded-full bg-white/20 backdrop-blur-sm text-white">
-                  <span className="text-sm font-medium">The vision</span>
+              <div className="absolute top-2 sm:top-4 right-2 sm:right-4 z-20">
+                <div className="inline-flex items-center justify-center px-3 sm:px-4 py-1 sm:py-2 rounded-full bg-white/20 backdrop-blur-sm text-white">
+                  <span className="text-xs sm:text-sm font-medium">The vision</span>
                 </div>
               </div>
               
-              <div className="relative z-10 p-5 sm:p-6 md:p-8 h-full flex items-center">
+              <div className="relative z-10 p-3 sm:p-5 md:p-6 lg:p-8 h-full flex items-center">
                 <div className="max-w-lg">
-                  <h3 className="text-xl sm:text-2xl md:text-3xl font-display text-white font-bold leading-tight mb-4">
+                  <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-display text-white font-bold leading-tight mb-2 sm:mb-4">
                     We're bringing adaptive intelligence to where humans work
                   </h3>
                 </div>
@@ -167,15 +167,15 @@ const HumanoidSection = () => {
               }}></div>
               
               {/* Button positioned in top right corner */}
-              <div className="absolute top-4 right-4 z-20">
-                <div className="inline-flex items-center justify-center px-4 py-2 rounded-full bg-white/20 backdrop-blur-sm text-white">
-                  <span className="text-sm font-medium">The vision</span>
+              <div className="absolute top-2 sm:top-4 right-2 sm:right-4 z-20">
+                <div className="inline-flex items-center justify-center px-3 sm:px-4 py-1 sm:py-2 rounded-full bg-white/20 backdrop-blur-sm text-white">
+                  <span className="text-xs sm:text-sm font-medium">The vision</span>
                 </div>
               </div>
               
-              <div className="relative z-10 p-5 sm:p-6 md:p-8 h-full flex items-center">
+              <div className="relative z-10 p-3 sm:p-5 md:p-6 lg:p-8 h-full flex items-center">
                 <div className="max-w-lg">
-                  <h3 className="text-xl sm:text-2xl md:text-3xl font-display text-white font-bold leading-tight mb-4">
+                  <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-display text-white font-bold leading-tight mb-2 sm:mb-4">
                     We're creating companions, <span className="text-[#FC4D0A]">not replacements</span>
                   </h3>
                 </div>
