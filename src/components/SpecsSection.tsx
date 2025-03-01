@@ -19,15 +19,8 @@ const SpecsSection = () => {
         {/* Main content with text mask image */}
         <div className="max-w-5xl pl-8">
           <h2 className="text-4xl sm:text-5xl md:text-6xl font-display leading-tight mb-12">
-            <span className="block mb-2 bg-clip-text text-transparent bg-[url('/text-mask-image.jpg')] bg-cover bg-center">
-              Atlas works with your team, not instead of it.
-            </span>
-            
-            <span className="block mt-8 bg-clip-text text-transparent bg-[url('/text-mask-image.jpg')] bg-cover bg-center">
-              By handling repetitive tasks, improving safety conditions, 
-              and learning from every interaction, Atlas helps 
-              humans focus on what they do best: 
-              create, solve, and innovate.
+            <span className="block bg-clip-text text-transparent bg-[url('/text-mask-image.jpg')] bg-cover bg-center">
+              Atlas works with your team, not instead of it. By handling repetitive tasks, improving safety conditions, and learning from every interaction, Atlas helps humans focus on what they do best: create, solve, and innovate.
             </span>
           </h2>
         </div>
