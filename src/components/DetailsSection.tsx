@@ -35,7 +35,7 @@ const DetailsSection = () => {
   };
 
   return (
-    <section className="w-full py-24 bg-white" id="details">
+    <section className="w-full py-16 bg-white" id="details">
       <div className="container px-6 lg:px-8 mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Left Card - The Details */}
