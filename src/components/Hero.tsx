@@ -1,4 +1,3 @@
-
 import React, { useEffect, useRef } from "react";
 import { cn } from "@/lib/utils";
 import { ArrowRight } from "lucide-react";
@@ -50,8 +49,9 @@ const Hero = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-  return <section className="pt-40 md:pt-48 pb-16 overflow-hidden relative bg-cover bg-center" id="hero" style={{
-    backgroundImage: 'url("/Header-background.png")'
+  return <section className="pt-40 md:pt-48 pb-16 overflow-hidden relative bg-cover" id="hero" style={{
+    backgroundImage: 'url("/Header-background.png")',
+    backgroundPosition: 'center 20%'
   }}>
       {/* Background gradient */}
       <div className="absolute -top-[10%] -right-[5%] w-1/2 h-[70%] bg-pulse-gradient opacity-20 blur-3xl rounded-full"></div>
