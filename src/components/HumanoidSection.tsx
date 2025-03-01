@@ -21,8 +21,15 @@ const HumanoidSection = () => {
         </div>
         
         <div className="relative w-full h-[500px] rounded-3xl overflow-hidden">
-          {/* Background gradient */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#121654] to-[#4799D9] z-0"></div>
+          {/* Background image */}
+          <div 
+            className="absolute inset-0 z-0" 
+            style={{
+              backgroundImage: "url('/lovable-uploads/17130a8a-02e1-4120-a9b2-317238053588.png')",
+              backgroundSize: "cover",
+              backgroundPosition: "center"
+            }}
+          ></div>
           
           <div className="relative z-10 p-12 md:p-16 h-full flex items-center">
             <div className="max-w-lg">
