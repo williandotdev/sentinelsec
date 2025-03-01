@@ -18,9 +18,10 @@ const HumanoidSection = () => {
       // Start when the section enters viewport, end when it leaves
       let progress = 0;
       
-      if (sectionTop <= windowHeight * 0.7) { // Start when 70% of the section is visible
-        // Calculate progress as percentage through the section
-        progress = Math.min(1, Math.max(0, (windowHeight * 0.7 - sectionTop) / (sectionHeight * 0.6)));
+      if (sectionTop <= windowHeight * 0.8) { // Start when 80% of the section is visible (previously 70%)
+        // Calculate progress as percentage through the section, but slow it down
+        // by dividing by a larger value (sectionHeight * 0.8 instead of 0.6)
+        progress = Math.min(1, Math.max(0, (windowHeight * 0.8 - sectionTop) / (sectionHeight * 0.8)));
       }
       
       setScrollProgress(progress);
@@ -33,8 +34,9 @@ const HumanoidSection = () => {
   }, []);
   
   // Define clear breakpoints for card transitions
-  const secondCardVisible = scrollProgress >= 0.33;
-  const thirdCardVisible = scrollProgress >= 0.67;
+  // Adjust these breakpoints to create a more gradual transition
+  const secondCardVisible = scrollProgress >= 0.25; // Previously 0.33
+  const thirdCardVisible = scrollProgress >= 0.6; // Previously 0.67
   
   return (
     <section className="w-full overflow-hidden py-16 md:py-24 relative" id="why-humanoid" ref={sectionRef}>
@@ -58,7 +60,7 @@ const HumanoidSection = () => {
         <div className="relative h-[700px] perspective-1000">
           {/* Base Card - Always visible at the bottom of the stack */}
           <div 
-            className="absolute w-full h-[600px] rounded-3xl overflow-hidden transition-all duration-700"
+            className="absolute w-full h-[600px] rounded-3xl overflow-hidden transition-all duration-1000"
             style={{
               zIndex: 10, // Always at the bottom
               transform: `scale(0.9)`,
@@ -91,7 +93,7 @@ const HumanoidSection = () => {
           
           {/* Second Card - Appears on scroll */}
           <div 
-            className="absolute w-full h-[600px] rounded-3xl overflow-hidden transition-all duration-700" 
+            className="absolute w-full h-[600px] rounded-3xl overflow-hidden transition-all duration-1000" 
             style={{
               zIndex: 20,
               transform: `translateY(${secondCardVisible ? 30 : 200}px) scale(0.95)`,
@@ -125,7 +127,7 @@ const HumanoidSection = () => {
           
           {/* Third Card - Appears on more scroll */}
           <div 
-            className="absolute w-full h-[600px] rounded-3xl overflow-hidden transition-all duration-700" 
+            className="absolute w-full h-[600px] rounded-3xl overflow-hidden transition-all duration-1000" 
             style={{
               zIndex: 30,
               transform: `translateY(${thirdCardVisible ? 60 : 200}px) scale(1)`,
