@@ -35,12 +35,11 @@ const Navbar = () => {
           className="flex items-center space-x-2"
           aria-label="Pulse Robot"
         >
-          <div className="h-8 w-8 relative">
-            <div className="absolute inset-0 bg-pulse-500 rounded-full"></div>
-            <div className="absolute inset-1.5 bg-white rounded-full"></div>
-            <div className="absolute inset-[10px] bg-pulse-500 rounded-full animate-pulse-slow"></div>
-          </div>
-          <span className="font-bold text-xl font-display tracking-tight">Pulse Robot</span>
+          <img 
+            src="/logo.svg" 
+            alt="Pulse Robot Logo" 
+            className="h-8" 
+          />
         </a>
 
         {/* Desktop Navigation */}
