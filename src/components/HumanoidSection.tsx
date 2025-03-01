@@ -1,9 +1,10 @@
 
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 const HumanoidSection = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const cardsContainerRef = useRef<HTMLDivElement>(null);
+  const [activeCardIndex, setActiveCardIndex] = useState(0);
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -12,154 +13,146 @@ const HumanoidSection = () => {
     
     if (!section || !cardsContainer || cards.length === 0) return;
     
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            section.classList.add('is-sticky');
-          } else {
-            section.classList.remove('is-sticky');
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-    
-    observer.observe(section);
-    
     const handleScroll = () => {
-      const sectionTop = section.offsetTop;
+      const sectionRect = section.getBoundingClientRect();
+      const sectionTop = sectionRect.top;
       const sectionHeight = section.offsetHeight;
-      const scrollY = window.scrollY;
+      const windowHeight = window.innerHeight;
       
-      // Calculate how far through the section the user has scrolled
-      const scrollProgress = (scrollY - sectionTop) / (sectionHeight - window.innerHeight);
+      // If section is not visible at all, do nothing
+      if (sectionTop > windowHeight || sectionTop + sectionHeight < 0) return;
       
-      if (scrollProgress >= 0 && scrollProgress <= 1) {
-        // Determine which card should be visible based on scroll progress
-        const cardIndex = Math.min(
-          Math.floor(scrollProgress * cards.length),
-          cards.length - 1
-        );
-        
-        cards.forEach((card, index) => {
-          if (index <= cardIndex) {
-            (card as HTMLElement).style.opacity = '1';
-            (card as HTMLElement).style.transform = `translateY(0)`;
-          } else {
-            (card as HTMLElement).style.opacity = '0';
-            (card as HTMLElement).style.transform = `translateY(50px)`;
-          }
-        });
-      }
+      // Calculate progress through the section (0 to 1)
+      const totalScrollDistance = sectionHeight - windowHeight;
+      const scrollPosition = Math.abs(sectionTop);
+      let scrollProgress = Math.min(Math.max(scrollPosition / totalScrollDistance, 0), 1);
+      
+      // Calculate which card should be active based on scroll progress
+      const newActiveIndex = Math.min(
+        Math.floor(scrollProgress * cards.length), 
+        cards.length - 1
+      );
+      
+      setActiveCardIndex(newActiveIndex);
+      
+      // Apply active class to cards
+      cards.forEach((card, index) => {
+        if (index === newActiveIndex) {
+          card.classList.add('active');
+        } else {
+          card.classList.remove('active');
+        }
+      });
     };
+    
+    // Initial call to set up the first card
+    setTimeout(handleScroll, 100);
     
     window.addEventListener('scroll', handleScroll);
     
     return () => {
       window.removeEventListener('scroll', handleScroll);
-      observer.disconnect();
     };
   }, []);
 
   return (
     <section 
-      className="w-full overflow-hidden py-16 md:py-24 sticky-section" 
+      className="w-full overflow-hidden sticky-section" 
       id="why-humanoid"
       ref={sectionRef}
-      style={{ height: '200vh' }} // Make the section taller to accommodate scrolling
     >
-      <div className="container px-6 lg:px-8 mx-auto sticky top-20" style={{ height: '80vh' }}>
-        <div className="mb-8">
-          <div className="flex items-center gap-4 mb-4">
-            {/* Updated styling to match Hero section's Purpose button */}
-            <div className="pulse-chip opacity-0 animate-fade-in" style={{
-            animationDelay: "0.1s"
-          }}>
-              <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-pulse-500 text-white mr-2">02</span>
-              <span>Humanoid</span>
+      <div className="container px-6 lg:px-8 mx-auto sticky-container">
+        <div className="w-full">
+          <div className="mb-8">
+            <div className="flex items-center gap-4 mb-4">
+              <div className="pulse-chip opacity-0 animate-fade-in" style={{
+                animationDelay: "0.1s"
+              }}>
+                <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-pulse-500 text-white mr-2">02</span>
+                <span>Humanoid</span>
+              </div>
             </div>
+            
+            <h2 className="section-title text-4xl sm:text-5xl font-display font-bold mb-8">
+              Why Humanoid
+            </h2>
           </div>
           
-          <h2 className="section-title text-4xl sm:text-5xl font-display font-bold mb-8">
-            Why Humanoid
-          </h2>
-        </div>
-        
-        {/* Cards container */}
-        <div className="flex flex-col gap-6" ref={cardsContainerRef}>
-          {/* Card 1 */}
-          <div className="relative w-full h-[600px] rounded-3xl overflow-hidden card-sticky transition-all duration-500">
-            {/* Repositioned background element with gradient overlay */}
-            <div className="absolute inset-0 z-0 bg-gradient-to-b from-pulse-900/40 to-dark-900/80" style={{
-              backgroundImage: "url('/background-section1.png')",
-              backgroundSize: "cover",
-              backgroundPosition: "top center",
-              backgroundBlendMode: "overlay"
-            }}></div>
-            
-            {/* Button positioned in top right corner */}
-            <div className="absolute top-4 right-4 z-20">
-              <div className="inline-flex items-center justify-center px-4 py-2 rounded-full bg-white/20 backdrop-blur-sm text-white">
-                <span className="text-sm font-medium">The vision</span>
+          {/* Cards container */}
+          <div className="relative w-full h-[600px]" ref={cardsContainerRef}>
+            {/* Card 1 */}
+            <div className={`w-full h-full rounded-3xl overflow-hidden card-sticky ${activeCardIndex === 0 ? 'active' : ''}`}>
+              {/* Repositioned background element with gradient overlay */}
+              <div className="absolute inset-0 z-0 bg-gradient-to-b from-pulse-900/40 to-dark-900/80" style={{
+                backgroundImage: "url('/background-section1.png')",
+                backgroundSize: "cover",
+                backgroundPosition: "top center",
+                backgroundBlendMode: "overlay"
+              }}></div>
+              
+              {/* Button positioned in top right corner */}
+              <div className="absolute top-4 right-4 z-20">
+                <div className="inline-flex items-center justify-center px-4 py-2 rounded-full bg-white/20 backdrop-blur-sm text-white">
+                  <span className="text-sm font-medium">The vision</span>
+                </div>
+              </div>
+              
+              <div className="relative z-10 p-12 md:p-16 h-full flex items-center">
+                <div className="max-w-lg">
+                  <h3 className="text-3xl md:text-4xl lg:text-5xl font-display text-white font-bold leading-tight mb-6">
+                    We're giving AI a way to navigate the physical world
+                  </h3>
+                </div>
               </div>
             </div>
             
-            <div className="relative z-10 p-12 md:p-16 h-full flex items-center">
-              <div className="max-w-lg">
-                <h3 className="text-3xl md:text-4xl lg:text-5xl font-display text-white font-bold leading-tight mb-6">
-                  We're giving AI a way to navigate the physical world
-                </h3>
+            {/* Card 2 */}
+            <div className={`w-full h-full rounded-3xl overflow-hidden card-sticky ${activeCardIndex === 1 ? 'active' : ''}`}>
+              {/* Repositioned background element with gradient overlay */}
+              <div className="absolute inset-0 z-0 bg-gradient-to-b from-pulse-900/40 to-dark-900/80" style={{
+                backgroundImage: "url('/background-section2.png')",
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                backgroundBlendMode: "overlay"
+              }}></div>
+              
+              {/* Button positioned in top right corner */}
+              <div className="absolute top-4 right-4 z-20">
+                <div className="inline-flex items-center justify-center px-4 py-2 rounded-full bg-white/20 backdrop-blur-sm text-white">
+                  <span className="text-sm font-medium">The vision</span>
+                </div>
               </div>
-            </div>
-          </div>
-          
-          {/* Card 2 */}
-          <div className="relative w-full h-[600px] rounded-3xl overflow-hidden card-sticky transition-all duration-500">
-            {/* Repositioned background element with gradient overlay */}
-            <div className="absolute inset-0 z-0 bg-gradient-to-b from-pulse-900/40 to-dark-900/80" style={{
-              backgroundImage: "url('/background-section2.png')",
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-              backgroundBlendMode: "overlay"
-            }}></div>
-            
-            {/* Button positioned in top right corner */}
-            <div className="absolute top-4 right-4 z-20">
-              <div className="inline-flex items-center justify-center px-4 py-2 rounded-full bg-white/20 backdrop-blur-sm text-white">
-                <span className="text-sm font-medium">The vision</span>
-              </div>
-            </div>
-            
-            <div className="relative z-10 p-12 md:p-16 h-full flex items-center">
-              <div className="max-w-lg">
-                <h3 className="text-3xl md:text-4xl lg:text-5xl font-display text-white font-bold leading-tight mb-6">We're bringing adaptive intelligence to where humans work</h3>
-              </div>
-            </div>
-          </div>
-          
-          {/* Card 3 */}
-          <div className="relative w-full h-[600px] rounded-3xl overflow-hidden card-sticky transition-all duration-500">
-            {/* Repositioned background element with gradient overlay */}
-            <div className="absolute inset-0 z-0 bg-gradient-to-b from-pulse-900/40 to-dark-900/80" style={{
-              backgroundImage: "url('/background-section3.png')",
-              backgroundSize: "cover",
-              backgroundPosition: "bottom center",
-              backgroundBlendMode: "overlay"
-            }}></div>
-            
-            {/* Button positioned in top right corner */}
-            <div className="absolute top-4 right-4 z-20">
-              <div className="inline-flex items-center justify-center px-4 py-2 rounded-full bg-white/20 backdrop-blur-sm text-white">
-                <span className="text-sm font-medium">The vision</span>
+              
+              <div className="relative z-10 p-12 md:p-16 h-full flex items-center">
+                <div className="max-w-lg">
+                  <h3 className="text-3xl md:text-4xl lg:text-5xl font-display text-white font-bold leading-tight mb-6">We're bringing adaptive intelligence to where humans work</h3>
+                </div>
               </div>
             </div>
             
-            <div className="relative z-10 p-12 md:p-16 h-full flex items-center">
-              <div className="max-w-lg">
-                <h3 className="text-3xl md:text-4xl lg:text-5xl font-display text-white font-bold leading-tight mb-6">
-                  We're creating companions, <span className="text-[#FC4D0A]">not replacements</span>
-                </h3>
+            {/* Card 3 */}
+            <div className={`w-full h-full rounded-3xl overflow-hidden card-sticky ${activeCardIndex === 2 ? 'active' : ''}`}>
+              {/* Repositioned background element with gradient overlay */}
+              <div className="absolute inset-0 z-0 bg-gradient-to-b from-pulse-900/40 to-dark-900/80" style={{
+                backgroundImage: "url('/background-section3.png')",
+                backgroundSize: "cover",
+                backgroundPosition: "bottom center",
+                backgroundBlendMode: "overlay"
+              }}></div>
+              
+              {/* Button positioned in top right corner */}
+              <div className="absolute top-4 right-4 z-20">
+                <div className="inline-flex items-center justify-center px-4 py-2 rounded-full bg-white/20 backdrop-blur-sm text-white">
+                  <span className="text-sm font-medium">The vision</span>
+                </div>
+              </div>
+              
+              <div className="relative z-10 p-12 md:p-16 h-full flex items-center">
+                <div className="max-w-lg">
+                  <h3 className="text-3xl md:text-4xl lg:text-5xl font-display text-white font-bold leading-tight mb-6">
+                    We're creating companions, <span className="text-[#FC4D0A]">not replacements</span>
+                  </h3>
+                </div>
               </div>
             </div>
           </div>
