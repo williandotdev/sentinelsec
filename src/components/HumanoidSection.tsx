@@ -23,24 +23,21 @@ const HumanoidSection = () => {
       if (sectionTop > windowHeight || sectionTop + sectionHeight < 0) return;
       
       // Calculate progress through the section (0 to 1)
-      const totalScrollDistance = sectionHeight - windowHeight;
-      const scrollPosition = Math.abs(sectionTop);
-      let scrollProgress = Math.min(Math.max(scrollPosition / totalScrollDistance, 0), 1);
+      const scrollableDistance = sectionHeight - windowHeight;
+      const scrolled = Math.abs(sectionTop);
+      const scrollProgress = Math.min(Math.max(scrolled / scrollableDistance, 0), 1);
+      
+      // Divide total scroll into equal segments for each card
+      const cardCount = cards.length;
+      const cardSegment = 1 / cardCount;
       
       // Calculate which card should be active based on scroll progress
-      // Divide total scroll into equal parts for each card
-      const cardCount = cards.length;
-      const cardScrollPortion = 1 / cardCount;
-      
-      // Calculate which card should be visible based on scroll progress
-      let newActiveIndex = Math.floor(scrollProgress / cardScrollPortion);
-      
-      // Ensure we don't go beyond the number of cards
+      let newActiveIndex = Math.floor(scrollProgress / cardSegment);
       newActiveIndex = Math.min(newActiveIndex, cardCount - 1);
       
       setActiveCardIndex(newActiveIndex);
       
-      // Apply active class to cards
+      // Apply active class to current card only
       cards.forEach((card, index) => {
         if (index === newActiveIndex) {
           card.classList.add('active');
@@ -52,9 +49,10 @@ const HumanoidSection = () => {
     
     // Set first card active initially
     cards[0].classList.add('active');
+    setActiveCardIndex(0);
     
     // Initial call to set up the first card
-    setTimeout(handleScroll, 100);
+    handleScroll();
     
     window.addEventListener('scroll', handleScroll);
     
