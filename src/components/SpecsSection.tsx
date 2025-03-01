@@ -11,8 +11,9 @@ const SpecsSection = () => {
             <div className="inline-flex items-center justify-center w-10 h-10 rounded-full border-2 border-dashed border-gray-800">
               <span className="text-gray-800 font-medium">02</span>
             </div>
-            <div className="inline-flex items-center justify-center px-4 py-2 rounded-full border-2 border-dashed border-gray-800">
-              <span className="text-gray-800 font-medium">Specs</span>
+            <div className="pulse-chip">
+              <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-pulse-500 text-white mr-2">02</span>
+              <span>Specs</span>
             </div>
           </div>
           <div className="flex-1 h-[1px] bg-gray-300"></div>
