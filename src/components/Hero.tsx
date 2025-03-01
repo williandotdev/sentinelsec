@@ -74,7 +74,7 @@ const Hero = () => {
             
             <p style={{
             animationDelay: "0.5s"
-          }} className="section-subtitle mt-6 mb-8 leading-relaxed opacity-0 animate-fade-in font-medium my-[23px] text-left text-gray-950">
+          }} className="section-subtitle mt-6 mb-8 leading-relaxed opacity-0 animate-fade-in my-[23px] text-gray-950 font-normal px-0 py-[11px] mx-0 text-left">
               The humanoid companion that learns and adapts alongside you.
             </p>
             
