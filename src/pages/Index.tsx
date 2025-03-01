@@ -58,12 +58,10 @@ const Index = () => {
       <main>
         <Hero />
         <HumanoidSection />
-        <div style={{ marginTop: '100vh' }}> {/* Add spacing after the sticky section */}
-          <Features />
-          <HowItWorks />
-          <Testimonials />
-          <CTA />
-        </div>
+        <Features />
+        <HowItWorks />
+        <Testimonials />
+        <CTA />
       </main>
       <Footer />
     </div>

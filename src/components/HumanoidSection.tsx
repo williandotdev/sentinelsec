@@ -2,33 +2,29 @@
 import React, { useEffect, useRef, useState } from "react";
 
 const HumanoidSection = () => {
-  const sectionRef = useRef<HTMLElement>(null);
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
-  const [isSticky, setIsSticky] = useState(false);
   
   useEffect(() => {
     const handleScroll = () => {
-      if (!sectionRef.current) return;
+      if (!sectionRef.current || !contentRef.current) return;
       
-      const rect = sectionRef.current.getBoundingClientRect();
-      const sectionTop = rect.top;
-      const sectionHeight = rect.height;
+      const sectionRect = sectionRef.current.getBoundingClientRect();
+      const contentRect = contentRef.current.getBoundingClientRect();
       const windowHeight = window.innerHeight;
+      const scrollArea = contentRef.current.offsetHeight - windowHeight;
       
-      // Make the section sticky when it reaches the top until scrolled past
-      const shouldBeSticky = sectionTop <= 0 && sectionTop > -sectionHeight + windowHeight;
-      setIsSticky(shouldBeSticky);
-      
-      // Calculate scroll progress for card transitions only
+      // Calculate scroll progress based on the section's position relative to the viewport
       let progress = 0;
       
-      if (sectionTop <= 0) {
-        // Create a more consistent progression through all cards
-        progress = Math.min(1, Math.max(0, -sectionTop / (sectionHeight - windowHeight)));
+      // Start calculating progress once the section is at the top of the viewport
+      if (sectionRect.top <= 0) {
+        // Use the content height as the scroll area to ensure full transition
+        progress = Math.min(1, Math.max(0, -sectionRect.top / scrollArea));
       }
       
       console.log("Scroll progress:", progress);
-      
       setScrollProgress(progress);
     };
     
@@ -43,143 +39,146 @@ const HumanoidSection = () => {
   const thirdCardVisible = scrollProgress >= 0.5;
   
   return (
-    <section 
-      className="w-full py-16 md:py-24 min-h-screen sticky top-0 z-50" 
-      id="why-humanoid" 
+    <div 
       ref={sectionRef}
+      className="relative"
       style={{ 
-        height: '100vh',
-        overflow: 'hidden'
+        height: '300vh' // Create scroll area that's 3x viewport height
       }}
     >
-      {/* Static section header - always visible */}
-      <div className="container px-6 lg:px-8 mx-auto relative">
-        <div className="mb-8">
-          <div className="flex items-center gap-4 mb-4">
-            <div className="pulse-chip opacity-0 animate-fade-in" style={{
-              animationDelay: "0.1s"
-            }}>
-              <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-pulse-500 text-white mr-2">02</span>
-              <span>Humanoid</span>
+      {/* Fixed content container */}
+      <section 
+        className="w-full py-16 md:py-24 h-screen sticky top-0 z-50 overflow-hidden"
+        id="why-humanoid"
+      >
+        <div className="container px-6 lg:px-8 mx-auto">
+          <div className="mb-8">
+            <div className="flex items-center gap-4 mb-4">
+              <div className="pulse-chip opacity-0 animate-fade-in" style={{
+                animationDelay: "0.1s"
+              }}>
+                <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-pulse-500 text-white mr-2">02</span>
+                <span>Humanoid</span>
+              </div>
             </div>
+            
+            <h2 className="section-title text-4xl sm:text-5xl font-display font-bold mb-8">
+              Why Humanoid
+            </h2>
           </div>
           
-          <h2 className="section-title text-4xl sm:text-5xl font-display font-bold mb-8">
-            Why Humanoid
-          </h2>
+          {/* Cards Container - This will be fixed but cards animate based on scroll */}
+          <div 
+            ref={contentRef}
+            className="relative h-[700px] perspective-1000"
+          >
+            {/* Base Card - Always visible at the bottom of the stack */}
+            <div 
+              className="absolute w-full h-[600px] rounded-3xl overflow-hidden will-change-transform"
+              style={{
+                zIndex: 10,
+                transform: `scale(0.9)`,
+                opacity: 0.9,
+                transition: 'transform 1.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 1.5s cubic-bezier(0.16, 1, 0.3, 1)'
+              }}
+            >
+              {/* Background with gradient overlay */}
+              <div className="absolute inset-0 z-0 bg-gradient-to-b from-pulse-900/40 to-dark-900/80" style={{
+                backgroundImage: "url('/background-section1.png')",
+                backgroundSize: "cover",
+                backgroundPosition: "top center",
+                backgroundBlendMode: "overlay"
+              }}></div>
+              
+              {/* Button positioned in top right corner */}
+              <div className="absolute top-4 right-4 z-20">
+                <div className="inline-flex items-center justify-center px-4 py-2 rounded-full bg-white/20 backdrop-blur-sm text-white">
+                  <span className="text-sm font-medium">The vision</span>
+                </div>
+              </div>
+              
+              <div className="relative z-10 p-12 md:p-16 h-full flex items-center">
+                <div className="max-w-lg">
+                  <h3 className="text-3xl md:text-4xl lg:text-5xl font-display text-white font-bold leading-tight mb-6">
+                    We're giving AI a way to navigate the physical world
+                  </h3>
+                </div>
+              </div>
+            </div>
+            
+            {/* Second Card - Appears on scroll */}
+            <div 
+              className="absolute w-full h-[600px] rounded-3xl overflow-hidden will-change-transform" 
+              style={{
+                zIndex: 20,
+                transform: `translateY(${secondCardVisible ? 30 : 200}px) scale(0.95)`,
+                opacity: secondCardVisible ? 1 : 0,
+                pointerEvents: secondCardVisible ? 'auto' : 'none',
+                transition: 'transform 1.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 1.5s cubic-bezier(0.16, 1, 0.3, 1)'
+              }}
+            >
+              {/* Background with gradient overlay */}
+              <div className="absolute inset-0 z-0 bg-gradient-to-b from-pulse-900/40 to-dark-900/80" style={{
+                backgroundImage: "url('/background-section2.png')",
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                backgroundBlendMode: "overlay"
+              }}></div>
+              
+              {/* Button positioned in top right corner */}
+              <div className="absolute top-4 right-4 z-20">
+                <div className="inline-flex items-center justify-center px-4 py-2 rounded-full bg-white/20 backdrop-blur-sm text-white">
+                  <span className="text-sm font-medium">The vision</span>
+                </div>
+              </div>
+              
+              <div className="relative z-10 p-12 md:p-16 h-full flex items-center">
+                <div className="max-w-lg">
+                  <h3 className="text-3xl md:text-4xl lg:text-5xl font-display text-white font-bold leading-tight mb-6">
+                    We're bringing adaptive intelligence to where humans work
+                  </h3>
+                </div>
+              </div>
+            </div>
+            
+            {/* Third Card - Appears on more scroll */}
+            <div 
+              className="absolute w-full h-[600px] rounded-3xl overflow-hidden will-change-transform" 
+              style={{
+                zIndex: 30,
+                transform: `translateY(${thirdCardVisible ? 60 : 200}px) scale(1)`,
+                opacity: thirdCardVisible ? 1 : 0,
+                pointerEvents: thirdCardVisible ? 'auto' : 'none',
+                transition: 'transform 1.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 1.5s cubic-bezier(0.16, 1, 0.3, 1)'
+              }}
+            >
+              {/* Background with gradient overlay */}
+              <div className="absolute inset-0 z-0 bg-gradient-to-b from-pulse-900/40 to-dark-900/80" style={{
+                backgroundImage: "url('/background-section3.png')",
+                backgroundSize: "cover",
+                backgroundPosition: "bottom center",
+                backgroundBlendMode: "overlay"
+              }}></div>
+              
+              {/* Button positioned in top right corner */}
+              <div className="absolute top-4 right-4 z-20">
+                <div className="inline-flex items-center justify-center px-4 py-2 rounded-full bg-white/20 backdrop-blur-sm text-white">
+                  <span className="text-sm font-medium">The vision</span>
+                </div>
+              </div>
+              
+              <div className="relative z-10 p-12 md:p-16 h-full flex items-center">
+                <div className="max-w-lg">
+                  <h3 className="text-3xl md:text-4xl lg:text-5xl font-display text-white font-bold leading-tight mb-6">
+                    We're creating companions, <span className="text-[#FC4D0A]">not replacements</span>
+                  </h3>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        
-        {/* Cards Container - Cards move based on scroll progress */}
-        <div className="relative h-[700px] perspective-1000">
-          {/* Base Card - Always visible at the bottom of the stack */}
-          <div 
-            className="absolute w-full h-[600px] rounded-3xl overflow-hidden will-change-transform"
-            style={{
-              zIndex: 10,
-              transform: `scale(0.9)`,
-              opacity: 0.9,
-              transition: 'transform 1.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 1.5s cubic-bezier(0.16, 1, 0.3, 1)'
-            }}
-          >
-            {/* Background with gradient overlay */}
-            <div className="absolute inset-0 z-0 bg-gradient-to-b from-pulse-900/40 to-dark-900/80" style={{
-              backgroundImage: "url('/background-section1.png')",
-              backgroundSize: "cover",
-              backgroundPosition: "top center",
-              backgroundBlendMode: "overlay"
-            }}></div>
-            
-            {/* Button positioned in top right corner */}
-            <div className="absolute top-4 right-4 z-20">
-              <div className="inline-flex items-center justify-center px-4 py-2 rounded-full bg-white/20 backdrop-blur-sm text-white">
-                <span className="text-sm font-medium">The vision</span>
-              </div>
-            </div>
-            
-            <div className="relative z-10 p-12 md:p-16 h-full flex items-center">
-              <div className="max-w-lg">
-                <h3 className="text-3xl md:text-4xl lg:text-5xl font-display text-white font-bold leading-tight mb-6">
-                  We're giving AI a way to navigate the physical world
-                </h3>
-              </div>
-            </div>
-          </div>
-          
-          {/* Second Card - Appears on scroll */}
-          <div 
-            className="absolute w-full h-[600px] rounded-3xl overflow-hidden will-change-transform" 
-            style={{
-              zIndex: 20,
-              transform: `translateY(${secondCardVisible ? 30 : 200}px) scale(0.95)`,
-              opacity: secondCardVisible ? 1 : 0,
-              pointerEvents: secondCardVisible ? 'auto' : 'none',
-              transition: 'transform 1.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 1.5s cubic-bezier(0.16, 1, 0.3, 1)'
-            }}
-          >
-            {/* Background with gradient overlay */}
-            <div className="absolute inset-0 z-0 bg-gradient-to-b from-pulse-900/40 to-dark-900/80" style={{
-              backgroundImage: "url('/background-section2.png')",
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-              backgroundBlendMode: "overlay"
-            }}></div>
-            
-            {/* Button positioned in top right corner */}
-            <div className="absolute top-4 right-4 z-20">
-              <div className="inline-flex items-center justify-center px-4 py-2 rounded-full bg-white/20 backdrop-blur-sm text-white">
-                <span className="text-sm font-medium">The vision</span>
-              </div>
-            </div>
-            
-            <div className="relative z-10 p-12 md:p-16 h-full flex items-center">
-              <div className="max-w-lg">
-                <h3 className="text-3xl md:text-4xl lg:text-5xl font-display text-white font-bold leading-tight mb-6">
-                  We're bringing adaptive intelligence to where humans work
-                </h3>
-              </div>
-            </div>
-          </div>
-          
-          {/* Third Card - Appears on more scroll */}
-          <div 
-            className="absolute w-full h-[600px] rounded-3xl overflow-hidden will-change-transform" 
-            style={{
-              zIndex: 30,
-              transform: `translateY(${thirdCardVisible ? 60 : 200}px) scale(1)`,
-              opacity: thirdCardVisible ? 1 : 0,
-              pointerEvents: thirdCardVisible ? 'auto' : 'none',
-              transition: 'transform 1.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 1.5s cubic-bezier(0.16, 1, 0.3, 1)'
-            }}
-          >
-            {/* Background with gradient overlay */}
-            <div className="absolute inset-0 z-0 bg-gradient-to-b from-pulse-900/40 to-dark-900/80" style={{
-              backgroundImage: "url('/background-section3.png')",
-              backgroundSize: "cover",
-              backgroundPosition: "bottom center",
-              backgroundBlendMode: "overlay"
-            }}></div>
-            
-            {/* Button positioned in top right corner */}
-            <div className="absolute top-4 right-4 z-20">
-              <div className="inline-flex items-center justify-center px-4 py-2 rounded-full bg-white/20 backdrop-blur-sm text-white">
-                <span className="text-sm font-medium">The vision</span>
-              </div>
-            </div>
-            
-            <div className="relative z-10 p-12 md:p-16 h-full flex items-center">
-              <div className="max-w-lg">
-                <h3 className="text-3xl md:text-4xl lg:text-5xl font-display text-white font-bold leading-tight mb-6">
-                  We're creating companions, <span className="text-[#FC4D0A]">not replacements</span>
-                </h3>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      {/* Spacer div to allow scrolling for the card transitions */}
-      <div style={{ height: '100vh' }}></div>
-    </section>
+      </section>
+    </div>
   );
 };
 
