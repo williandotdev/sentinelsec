@@ -23,8 +23,7 @@ const LottieAnimation = ({
         animationData={animationPath}
         loop={loop}
         autoplay={autoplay}
-        // Changed from speed to animationSpeed which is the correct property name
-        animationSpeed={speed}
+        speed={speed}
         style={{ width: "100%", height: "100%" }}
         rendererSettings={{
           preserveAspectRatio: "xMidYMid slice",
