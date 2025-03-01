@@ -86,9 +86,7 @@ const HumanoidSection = () => {
             
             <div className="relative z-10 p-12 md:p-16 h-full flex items-center">
               <div className="max-w-lg">
-                <h3 className="text-3xl md:text-4xl lg:text-5xl font-display text-white font-bold leading-tight mb-6">
-                  We're giving AI a way to navigate the physical world
-                </h3>
+                <h3 className="text-3xl md:text-4xl lg:text-5xl font-display text-white font-bold leading-tight mb-6">We're creating companions, not replacements</h3>
               </div>
             </div>
           </div>
