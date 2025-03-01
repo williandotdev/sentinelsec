@@ -66,7 +66,7 @@
 @keyframes card-enter {
   from {
     opacity: 0;
-    transform: translateY(40px) scale(0.95);
+    transform: translateY(30px) scale(0.95);
   }
   to {
     opacity: 1;
@@ -75,33 +75,7 @@
 }
 
 .animate-card-enter {
-  animation: card-enter 0.5s cubic-bezier(0.4, 0.0, 0.2, 1) forwards;
-}
-
-/* Add card transition styles */
-.card-transition {
-  transition-property: transform, opacity;
-  transition-timing-function: cubic-bezier(0.4, 0.0, 0.2, 1);
-  transition-duration: 0.3s;
-}
-
-/* Add 3D perspective enhancement */
-.perspective-enhanced {
-  perspective: 1200px;
-  transform-style: preserve-3d;
-}
-
-/* Reduce motion for accessibility */
-@media (prefers-reduced-motion) {
-  .animate-card-enter {
-    animation: none;
-    opacity: 1;
-    transform: none;
-  }
-  
-  .card-transition {
-    transition: none;
-  }
+  animation: card-enter 0.4s cubic-bezier(0.19, 1, 0.22, 1) forwards;
 }
 
 /* Mobile optimizations */
@@ -119,5 +93,42 @@
   /* Reduce the padding for mobile */
   .section-container {
     padding: 2rem 1rem;
+  }
+}
+
+/* Robot Showcase Section */
+.robot-image-container {
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  transition: transform 0.5s ease;
+}
+
+.robot-image-container:hover {
+  transform: scale(1.02);
+}
+
+.feature-item {
+  background-color: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.feature-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.12);
+}
+
+/* Enhanced mobile optimizations */
+@media (max-width: 640px) {
+  .robot-image-container {
+    border-radius: 16px;
+  }
+  
+  .feature-grid {
+    grid-template-columns: 1fr;
   }
 }
