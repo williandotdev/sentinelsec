@@ -17,7 +17,7 @@ const SpecsSection = () => {
         </div>
         
         {/* Main content with text mask image */}
-        <div className="max-w-5xl">
+        <div className="max-w-5xl pl-8">
           <h2 className="text-4xl sm:text-5xl md:text-6xl font-display leading-tight mb-12">
             <span className="block mb-2 bg-clip-text text-transparent bg-[url('/text-mask-image.jpg')] bg-cover bg-center">
               Atlas works with your team, not instead of it.
