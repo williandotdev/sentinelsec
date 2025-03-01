@@ -4,6 +4,7 @@ import React, { useEffect, useRef, useState } from "react";
 const HumanoidSection = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [isSticky, setIsSticky] = useState(false);
   
   useEffect(() => {
     const handleScroll = () => {
@@ -13,6 +14,10 @@ const HumanoidSection = () => {
       const sectionTop = rect.top;
       const sectionHeight = rect.height;
       const windowHeight = window.innerHeight;
+      
+      // Determine if section should be sticky
+      const shouldBeSticky = sectionTop <= 0 && sectionTop > -sectionHeight + windowHeight;
+      setIsSticky(shouldBeSticky);
       
       // Calculate scroll progress within the section
       // Start when the section enters viewport, end when it leaves
@@ -39,7 +44,15 @@ const HumanoidSection = () => {
   const thirdCardVisible = scrollProgress >= 0.6; // Previously 0.67
   
   return (
-    <section className="w-full overflow-hidden py-16 md:py-24 relative" id="why-humanoid" ref={sectionRef}>
+    <section 
+      className={`w-full overflow-hidden py-16 md:py-24 relative ${isSticky ? 'sticky top-0 z-50' : ''}`} 
+      id="why-humanoid" 
+      ref={sectionRef}
+      style={{ 
+        height: isSticky ? '100vh' : 'auto',
+        transition: 'height 0.3s ease-out'
+      }}
+    >
       <div className="container px-6 lg:px-8 mx-auto">
         <div className="mb-8">
           <div className="flex items-center gap-4 mb-4">
