@@ -15,20 +15,20 @@ const HumanoidSection = () => {
       const sectionHeight = rect.height;
       const windowHeight = window.innerHeight;
       
-      // Improve stickiness logic - make it stick longer
-      // Only unstick when section is fully scrolled through
-      const shouldBeSticky = sectionTop <= 0 && sectionTop > -sectionHeight * 2 + windowHeight;
+      // Make the section sticky for a longer duration
+      const shouldBeSticky = sectionTop <= 0 && sectionTop > -sectionHeight * 2.5 + windowHeight;
       setIsSticky(shouldBeSticky);
       
-      // Calculate scroll progress within the section
-      // Start when the section enters viewport, end when it leaves
+      // Improve scroll progress calculation to ensure we reach values needed for all cards
       let progress = 0;
       
-      if (sectionTop <= windowHeight * 0.9) { // Start when 90% of the section is visible
-        // Calculate progress as percentage through a much longer virtual section (3x the actual height)
-        // This effectively makes the scroll distance much longer
-        progress = Math.min(1, Math.max(0, (windowHeight * 0.9 - sectionTop) / (sectionHeight * 3)));
+      if (sectionTop <= windowHeight * 0.9) {
+        // Use a smaller multiplier to ensure we can reach full progress (1.0) more easily
+        progress = Math.min(1, Math.max(0, (windowHeight * 0.9 - sectionTop) / (sectionHeight * 2)));
       }
+      
+      // Log the progress to help with debugging
+      console.log("Scroll progress:", progress);
       
       setScrollProgress(progress);
     };
@@ -39,10 +39,10 @@ const HumanoidSection = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
   
-  // Define clear breakpoints for card transitions with even more space between them
-  // This creates a longer scroll distance between card transitions
+  // Adjust the thresholds to make the third card appear earlier
+  // This ensures the third card becomes visible before reaching the end of the section
   const secondCardVisible = scrollProgress >= 0.15;
-  const thirdCardVisible = scrollProgress >= 0.70;
+  const thirdCardVisible = scrollProgress >= 0.50; // Lowered from 0.70 to ensure visibility
   
   return (
     <section 
@@ -51,8 +51,8 @@ const HumanoidSection = () => {
       ref={sectionRef}
       style={{ 
         height: isSticky ? '100vh' : 'auto',
-        minHeight: '200vh', // Increase section height for longer scrolling
-        transition: 'height 0.3s cubic-bezier(0.4, 0, 0.2, 1)' // Using ease-out cubic-bezier for smoother transition
+        minHeight: '250vh', // Increase section height for longer scrolling
+        transition: 'height 0.3s cubic-bezier(0.4, 0, 0.2, 1)'
       }}
     >
       <div className="container px-6 lg:px-8 mx-auto">
