@@ -3,28 +3,26 @@ import React, { useEffect, useRef, useState } from "react";
 
 const HumanoidSection = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const contentRef = useRef<HTMLDivElement>(null);
+  const cardsContainerRef = useRef<HTMLDivElement>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
   
   useEffect(() => {
     const handleScroll = () => {
-      if (!sectionRef.current || !contentRef.current) return;
+      if (!sectionRef.current) return;
       
       const sectionRect = sectionRef.current.getBoundingClientRect();
-      const contentRect = contentRef.current.getBoundingClientRect();
-      const windowHeight = window.innerHeight;
-      const scrollArea = contentRef.current.offsetHeight - windowHeight;
+      const viewportHeight = window.innerHeight;
       
-      // Calculate scroll progress based on the section's position relative to the viewport
-      let progress = 0;
+      // Calculate progress based on how far we've scrolled through the section
+      // We want the animation to happen over 2 viewport heights worth of scrolling
+      const totalScrollDistance = viewportHeight * 2;
       
       // Start calculating progress once the section is at the top of the viewport
+      let progress = 0;
       if (sectionRect.top <= 0) {
-        // Use the content height as the scroll area to ensure full transition
-        progress = Math.min(1, Math.max(0, -sectionRect.top / scrollArea));
+        progress = Math.min(1, Math.max(0, Math.abs(sectionRect.top) / totalScrollDistance));
       }
       
-      console.log("Scroll progress:", progress);
       setScrollProgress(progress);
     };
     
@@ -34,24 +32,24 @@ const HumanoidSection = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
   
-  // Define thresholds for card visibility with equal spacing
-  const secondCardVisible = scrollProgress >= 0.25;
-  const thirdCardVisible = scrollProgress >= 0.5;
+  // Define thresholds for card visibility with more spacing
+  const secondCardVisible = scrollProgress >= 0.33;
+  const thirdCardVisible = scrollProgress >= 0.66;
   
   return (
     <div 
       ref={sectionRef}
       className="relative"
       style={{ 
-        height: '300vh' // Create scroll area that's 3x viewport height
+        height: '300vh', // Create scroll area that's 3x viewport height
       }}
     >
-      {/* Fixed content container */}
+      {/* Fixed content container that actually sticks */}
       <section 
-        className="w-full py-16 md:py-24 h-screen sticky top-0 z-50 overflow-hidden"
+        className="w-full h-screen py-16 md:py-24 sticky top-0 overflow-hidden bg-white"
         id="why-humanoid"
       >
-        <div className="container px-6 lg:px-8 mx-auto">
+        <div className="container px-6 lg:px-8 mx-auto h-full flex flex-col">
           <div className="mb-8">
             <div className="flex items-center gap-4 mb-4">
               <div className="pulse-chip opacity-0 animate-fade-in" style={{
@@ -69,15 +67,15 @@ const HumanoidSection = () => {
           
           {/* Cards Container - This will be fixed but cards animate based on scroll */}
           <div 
-            ref={contentRef}
-            className="relative h-[700px] perspective-1000"
+            ref={cardsContainerRef}
+            className="relative flex-1 perspective-1000"
           >
             {/* Base Card - Always visible at the bottom of the stack */}
             <div 
-              className="absolute w-full h-[600px] rounded-3xl overflow-hidden will-change-transform"
+              className="absolute inset-0 rounded-3xl overflow-hidden will-change-transform"
               style={{
                 zIndex: 10,
-                transform: `scale(0.9)`,
+                transform: `translateY(60px) scale(0.9)`,
                 opacity: 0.9,
                 transition: 'transform 1.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 1.5s cubic-bezier(0.16, 1, 0.3, 1)'
               }}
@@ -108,7 +106,7 @@ const HumanoidSection = () => {
             
             {/* Second Card - Appears on scroll */}
             <div 
-              className="absolute w-full h-[600px] rounded-3xl overflow-hidden will-change-transform" 
+              className="absolute inset-0 rounded-3xl overflow-hidden will-change-transform" 
               style={{
                 zIndex: 20,
                 transform: `translateY(${secondCardVisible ? 30 : 200}px) scale(0.95)`,
@@ -143,10 +141,10 @@ const HumanoidSection = () => {
             
             {/* Third Card - Appears on more scroll */}
             <div 
-              className="absolute w-full h-[600px] rounded-3xl overflow-hidden will-change-transform" 
+              className="absolute inset-0 rounded-3xl overflow-hidden will-change-transform" 
               style={{
                 zIndex: 30,
-                transform: `translateY(${thirdCardVisible ? 60 : 200}px) scale(1)`,
+                transform: `translateY(${thirdCardVisible ? 0 : 200}px) scale(1)`,
                 opacity: thirdCardVisible ? 1 : 0,
                 pointerEvents: thirdCardVisible ? 'auto' : 'none',
                 transition: 'transform 1.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 1.5s cubic-bezier(0.16, 1, 0.3, 1)'
