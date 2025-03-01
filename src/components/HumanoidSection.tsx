@@ -22,7 +22,7 @@ const HumanoidSection = () => {
         {/* Changed from grid to flex column with gap */}
         <div className="flex flex-col gap-6">
           {/* Card 1 */}
-          <div className="relative w-full h-[500px] rounded-3xl overflow-hidden">
+          <div className="relative w-full h-[600px] rounded-3xl overflow-hidden">
             {/* Background image */}
             <div className="absolute inset-0 z-0" style={{
             backgroundImage: "url('/background-section1.png')",
@@ -47,7 +47,7 @@ const HumanoidSection = () => {
           </div>
           
           {/* Card 2 - Changed background to background-section2.png */}
-          <div className="relative w-full h-[500px] rounded-3xl overflow-hidden">
+          <div className="relative w-full h-[600px] rounded-3xl overflow-hidden">
             {/* Background image */}
             <div className="absolute inset-0 z-0" style={{
             backgroundImage: "url('/background-section2.png')",
@@ -70,7 +70,7 @@ const HumanoidSection = () => {
           </div>
           
           {/* Card 3 - Changed background to background-section3.png */}
-          <div className="relative w-full h-[500px] rounded-3xl overflow-hidden">
+          <div className="relative w-full h-[600px] rounded-3xl overflow-hidden">
             {/* Background image */}
             <div className="absolute inset-0 z-0" style={{
             backgroundImage: "url('/background-section3.png')",
