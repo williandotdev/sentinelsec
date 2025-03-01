@@ -1,16 +1,13 @@
-
 import React from "react";
-
 const HumanoidSection = () => {
-  return (
-    <section className="w-full overflow-hidden py-16 md:py-24" id="why-humanoid">
+  return <section className="w-full overflow-hidden py-16 md:py-24" id="why-humanoid">
       <div className="container px-6 lg:px-8 mx-auto">
         <div className="mb-8">
           <div className="flex items-center gap-4 mb-4">
             {/* Updated styling to match Hero section's Purpose button */}
             <div className="pulse-chip opacity-0 animate-fade-in" style={{
-              animationDelay: "0.1s"
-            }}>
+            animationDelay: "0.1s"
+          }}>
               <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-pulse-500 text-white mr-2">02</span>
               <span>Humanoid</span>
             </div>
@@ -27,10 +24,10 @@ const HumanoidSection = () => {
           <div className="relative w-full h-[500px] rounded-3xl overflow-hidden">
             {/* Background image */}
             <div className="absolute inset-0 z-0" style={{
-              backgroundImage: "url('/background-section1.png')",
-              backgroundSize: "cover",
-              backgroundPosition: "center"
-            }}></div>
+            backgroundImage: "url('/background-section1.png')",
+            backgroundSize: "cover",
+            backgroundPosition: "center"
+          }}></div>
             
             {/* Button positioned in top right corner */}
             <div className="absolute top-4 right-4 z-20">
@@ -52,10 +49,10 @@ const HumanoidSection = () => {
           <div className="relative w-full h-[500px] rounded-3xl overflow-hidden">
             {/* Background image */}
             <div className="absolute inset-0 z-0" style={{
-              backgroundImage: "url('/background-section1.png')",
-              backgroundSize: "cover",
-              backgroundPosition: "center"
-            }}></div>
+            backgroundImage: "url('/background-section1.png')",
+            backgroundSize: "cover",
+            backgroundPosition: "center"
+          }}></div>
             
             {/* Button positioned in top right corner */}
             <div className="absolute top-4 right-4 z-20">
@@ -66,9 +63,7 @@ const HumanoidSection = () => {
             
             <div className="relative z-10 p-12 md:p-16 h-full flex items-center">
               <div className="max-w-lg">
-                <h3 className="text-3xl md:text-4xl lg:text-5xl font-display text-white font-bold leading-tight mb-6">
-                  We're giving AI a way to navigate the physical world
-                </h3>
+                <h3 className="text-3xl md:text-4xl lg:text-5xl font-display text-white font-bold leading-tight mb-6">We're bringing adaptive intelligence to where humans work</h3>
               </div>
             </div>
           </div>
@@ -77,10 +72,10 @@ const HumanoidSection = () => {
           <div className="relative w-full h-[500px] rounded-3xl overflow-hidden">
             {/* Background image */}
             <div className="absolute inset-0 z-0" style={{
-              backgroundImage: "url('/background-section1.png')",
-              backgroundSize: "cover",
-              backgroundPosition: "center"
-            }}></div>
+            backgroundImage: "url('/background-section1.png')",
+            backgroundSize: "cover",
+            backgroundPosition: "center"
+          }}></div>
             
             {/* Button positioned in top right corner */}
             <div className="absolute top-4 right-4 z-20">
@@ -102,10 +97,10 @@ const HumanoidSection = () => {
           <div className="relative w-full h-[500px] rounded-3xl overflow-hidden">
             {/* Background image */}
             <div className="absolute inset-0 z-0" style={{
-              backgroundImage: "url('/background-section1.png')",
-              backgroundSize: "cover",
-              backgroundPosition: "center"
-            }}></div>
+            backgroundImage: "url('/background-section1.png')",
+            backgroundSize: "cover",
+            backgroundPosition: "center"
+          }}></div>
             
             {/* Button positioned in top right corner */}
             <div className="absolute top-4 right-4 z-20">
@@ -124,8 +119,6 @@ const HumanoidSection = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default HumanoidSection;
