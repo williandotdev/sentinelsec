@@ -38,7 +38,7 @@ const HumanoidSection = () => {
   
   // Common card styling
   const cardStyle = {
-    height: '60vh',                 // Further reduced to 60vh for better fit
+    height: '60vh',                 // Reduced to 60vh for better fit
     maxHeight: '600px',             // Reduced max height
     borderRadius: '20px',           // Increased border radius for more modern look
     transition: 'transform 1.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 1.5s cubic-bezier(0.16, 1, 0.3, 1)'
@@ -84,7 +84,7 @@ const HumanoidSection = () => {
               style={{
                 ...cardStyle,
                 zIndex: 10,
-                transform: `translateY(${scrollProgress === 0 ? 110 : 90}px) scale(0.9)`,
+                transform: `translateY(${scrollProgress <= 0.33 ? 90 : 90}px) scale(0.9)`,
                 opacity: 0.9,
               }}
             >
