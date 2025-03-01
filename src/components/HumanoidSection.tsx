@@ -15,9 +15,9 @@ const HumanoidSection = () => {
       const sectionHeight = rect.height;
       const windowHeight = window.innerHeight;
       
-      // Determine if section should be sticky
-      // Only stick when section is at the top and not past its height
-      const shouldBeSticky = sectionTop <= 0 && sectionTop > -sectionHeight * 1.5 + windowHeight;
+      // Improve stickiness logic - make it stick longer
+      // Only unstick when section is fully scrolled through
+      const shouldBeSticky = sectionTop <= 0 && sectionTop > -sectionHeight * 2 + windowHeight;
       setIsSticky(shouldBeSticky);
       
       // Calculate scroll progress within the section
@@ -25,9 +25,9 @@ const HumanoidSection = () => {
       let progress = 0;
       
       if (sectionTop <= windowHeight * 0.9) { // Start when 90% of the section is visible
-        // Calculate progress as percentage through a much longer virtual section (2x the actual height)
+        // Calculate progress as percentage through a much longer virtual section (3x the actual height)
         // This effectively makes the scroll distance much longer
-        progress = Math.min(1, Math.max(0, (windowHeight * 0.9 - sectionTop) / (sectionHeight * 2)));
+        progress = Math.min(1, Math.max(0, (windowHeight * 0.9 - sectionTop) / (sectionHeight * 3)));
       }
       
       setScrollProgress(progress);
@@ -39,10 +39,10 @@ const HumanoidSection = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
   
-  // Define clear breakpoints for card transitions with much more space between them
+  // Define clear breakpoints for card transitions with even more space between them
   // This creates a longer scroll distance between card transitions
-  const secondCardVisible = scrollProgress >= 0.15; // Reduced from 0.25
-  const thirdCardVisible = scrollProgress >= 0.70; // Increased from 0.60
+  const secondCardVisible = scrollProgress >= 0.15;
+  const thirdCardVisible = scrollProgress >= 0.70;
   
   return (
     <section 
@@ -51,7 +51,7 @@ const HumanoidSection = () => {
       ref={sectionRef}
       style={{ 
         height: isSticky ? '100vh' : 'auto',
-        minHeight: '150vh', // Ensure section has extra vertical space
+        minHeight: '200vh', // Increase section height for longer scrolling
         transition: 'height 0.3s cubic-bezier(0.4, 0, 0.2, 1)' // Using ease-out cubic-bezier for smoother transition
       }}
     >
@@ -71,8 +71,11 @@ const HumanoidSection = () => {
           </h2>
         </div>
         
-        {/* Stacking Cards Container */}
-        <div className="relative h-[700px] perspective-1000">
+        {/* Stacking Cards Container - Make this sticky within the sticky section for double stickiness */}
+        <div className="relative h-[700px] perspective-1000" style={{
+          position: isSticky ? 'sticky' : 'relative',
+          top: isSticky ? '10vh' : 'auto'
+        }}>
           {/* Base Card - Always visible at the bottom of the stack */}
           <div 
             className="absolute w-full h-[600px] rounded-3xl overflow-hidden will-change-transform"
