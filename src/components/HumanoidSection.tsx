@@ -21,8 +21,8 @@ const HumanoidSection = () => {
           </h2>
         </div>
         
-        {/* Grid for the cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {/* Changed from grid to flex column with gap */}
+        <div className="flex flex-col gap-6">
           {/* Card 1 */}
           <div className="relative w-full h-[500px] rounded-3xl overflow-hidden">
             {/* Background image */}
