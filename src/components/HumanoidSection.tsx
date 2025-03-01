@@ -32,6 +32,11 @@ const HumanoidSection = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
   
+  // Define clear breakpoints for card transitions
+  const firstCardActive = scrollProgress < 0.33;
+  const secondCardActive = scrollProgress >= 0.33 && scrollProgress < 0.67;
+  const thirdCardActive = scrollProgress >= 0.67;
+  
   return (
     <section className="w-full overflow-hidden py-16 md:py-24 relative" id="why-humanoid" ref={sectionRef}>
       <div className="container px-6 lg:px-8 mx-auto">
@@ -56,12 +61,12 @@ const HumanoidSection = () => {
           <div 
             className="absolute w-full h-[600px] rounded-3xl overflow-hidden transition-all duration-700"
             style={{
-              zIndex: scrollProgress < 0.3 ? 30 : 10,
+              zIndex: firstCardActive ? 30 : 10,
               transform: `
-                translateY(${scrollProgress > 0.3 ? -20 * (scrollProgress - 0.3) * 10 : 0}px) 
-                scale(${scrollProgress > 0.3 ? 1 - (scrollProgress - 0.3) * 0.1 : 1})
+                translateY(${firstCardActive ? 0 : -50}px) 
+                scale(${firstCardActive ? 1 : 0.95})
               `,
-              opacity: scrollProgress > 0.7 ? 0.5 : 1
+              opacity: firstCardActive ? 1 : 0.7
             }}
           >
             {/* Background with gradient overlay */}
@@ -92,18 +97,19 @@ const HumanoidSection = () => {
           <div 
             className="absolute w-full h-[600px] rounded-3xl overflow-hidden transition-all duration-700" 
             style={{
-              zIndex: scrollProgress >= 0.3 && scrollProgress < 0.6 ? 30 : 20,
+              zIndex: secondCardActive ? 30 : (scrollProgress < 0.33 ? 20 : 10),
               transform: `
-                translateY(${scrollProgress < 0.3 ? 100 + (scrollProgress * 300) : 
-                          scrollProgress > 0.6 ? -20 * (scrollProgress - 0.6) * 10 : 
-                          190}px)
-                scale(${scrollProgress < 0.3 ? 0.9 + (scrollProgress * 0.3) : 
-                      scrollProgress > 0.6 ? 1 - (scrollProgress - 0.6) * 0.1 : 
-                      1})
+                translateY(${
+                  scrollProgress < 0.33 ? 50 : 
+                  secondCardActive ? 0 : -50
+                }px)
+                scale(${
+                  scrollProgress < 0.33 ? 0.9 : 
+                  secondCardActive ? 1 : 0.95
+                })
               `,
-              opacity: scrollProgress < 0.3 ? 0.3 + scrollProgress * 2.3 : 
-                      scrollProgress > 0.7 ? 0.7 : 
-                      1
+              opacity: scrollProgress < 0.25 ? 0.5 : 
+                      secondCardActive ? 1 : 0.7
             }}
           >
             {/* Background with gradient overlay */}
@@ -134,12 +140,12 @@ const HumanoidSection = () => {
           <div 
             className="absolute w-full h-[600px] rounded-3xl overflow-hidden transition-all duration-700" 
             style={{
-              zIndex: scrollProgress >= 0.6 ? 30 : 10,
+              zIndex: thirdCardActive ? 30 : 10,
               transform: `
-                translateY(${scrollProgress < 0.6 ? 200 + (scrollProgress * 300) : 380}px)
-                scale(${scrollProgress < 0.6 ? 0.8 + (scrollProgress * 0.3) : 1})
+                translateY(${scrollProgress < 0.67 ? 50 : 0}px)
+                scale(${scrollProgress < 0.67 ? 0.9 : 1})
               `,
-              opacity: scrollProgress < 0.6 ? 0.3 + scrollProgress : 1
+              opacity: scrollProgress < 0.6 ? 0.5 : 1
             }}
           >
             {/* Background with gradient overlay */}
