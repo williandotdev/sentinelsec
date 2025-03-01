@@ -44,7 +44,8 @@ const HumanoidSection = () => {
       <section className="w-full h-screen py-10 md:py-16 sticky top-0 overflow-hidden bg-white" id="why-humanoid">
         <div className="container px-6 lg:px-8 mx-auto h-full flex flex-col">
           <div className="mb-2 md:mb-3">
-            <div className="flex items-center gap-4 mb-2 md:mb-2">
+            {/* Added pt-2 to prevent the button from being cut off at the top when scrolling stops */}
+            <div className="flex items-center gap-4 mb-2 md:mb-2 pt-2">
               <div className="pulse-chip opacity-0 animate-fade-in" style={{
               animationDelay: "0.1s"
             }}>
