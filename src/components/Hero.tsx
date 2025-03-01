@@ -57,7 +57,7 @@ const Hero = () => {
 
   return (
     <section 
-      className="pt-28 md:pt-36 pb-16 overflow-hidden relative bg-cover bg-center" 
+      className="pt-40 md:pt-48 pb-16 overflow-hidden relative bg-cover bg-center" 
       id="hero"
       style={{ backgroundImage: 'url("/Header-background.png")' }}
     >
