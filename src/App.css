@@ -54,6 +54,15 @@
   backface-visibility: hidden;
 }
 
+/* Card shadows */
+.shadow-elegant {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.shadow-elegant-hover {
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
 /* Mobile optimizations */
 @media (max-width: 640px) {
   .container {
