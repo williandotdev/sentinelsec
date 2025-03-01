@@ -56,7 +56,11 @@ const Hero = () => {
   }, []);
 
   return (
-    <section className="pt-28 md:pt-36 pb-16 overflow-hidden relative" id="hero">
+    <section 
+      className="pt-28 md:pt-36 pb-16 overflow-hidden relative bg-cover bg-center" 
+      id="hero"
+      style={{ backgroundImage: 'url("/Header-background.png")' }}
+    >
       {/* Background gradient */}
       <div className="absolute -top-[10%] -right-[5%] w-1/2 h-[70%] bg-pulse-gradient opacity-20 blur-3xl rounded-full"></div>
       
