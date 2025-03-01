@@ -46,6 +46,7 @@
 .sticky-section {
   position: relative;
   height: 300vh; /* Tall enough to allow scrolling through all cards */
+  overflow: visible;
 }
 
 .sticky-container {
@@ -55,6 +56,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: visible;
 }
 
 .sticky-section .card-sticky {
@@ -67,10 +69,12 @@
   visibility: hidden;
   transition: opacity 0.5s ease, transform 0.5s ease, visibility 0.5s ease;
   transform: translateY(50px);
+  z-index: 1;
 }
 
 .sticky-section .card-sticky.active {
   opacity: 1;
   visibility: visible;
   transform: translateY(0);
+  z-index: 10;
 }

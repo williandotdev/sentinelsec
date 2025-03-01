@@ -28,10 +28,15 @@ const HumanoidSection = () => {
       let scrollProgress = Math.min(Math.max(scrollPosition / totalScrollDistance, 0), 1);
       
       // Calculate which card should be active based on scroll progress
-      const newActiveIndex = Math.min(
-        Math.floor(scrollProgress * cards.length), 
-        cards.length - 1
-      );
+      // Divide total scroll into equal parts for each card
+      const cardCount = cards.length;
+      const cardScrollPortion = 1 / cardCount;
+      
+      // Calculate which card should be visible based on scroll progress
+      let newActiveIndex = Math.floor(scrollProgress / cardScrollPortion);
+      
+      // Ensure we don't go beyond the number of cards
+      newActiveIndex = Math.min(newActiveIndex, cardCount - 1);
       
       setActiveCardIndex(newActiveIndex);
       
@@ -44,6 +49,9 @@ const HumanoidSection = () => {
         }
       });
     };
+    
+    // Set first card active initially
+    cards[0].classList.add('active');
     
     // Initial call to set up the first card
     setTimeout(handleScroll, 100);
