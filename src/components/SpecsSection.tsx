@@ -16,12 +16,28 @@ const SpecsSection = () => {
           <div className="flex-1 h-[1px] bg-gray-300"></div>
         </div>
         
-        {/* Main content */}
+        {/* Main content with better formatting */}
         <div className="max-w-5xl">
           <h2 className="text-4xl sm:text-5xl md:text-6xl font-display leading-tight mb-12">
-            Atlas works with your team, <span className="text-[#8B5CF6]">not</span> <span className="text-[#0EA5E9]">instead</span> <span className="text-[#D97706]">of</span> <span className="text-[#F97316]">it</span>.
-            <br /><br />
-            By handling repetitive tasks, improving safety conditions, and learning from every interaction, Atlas helps <span className="text-[#9A3412]">humans</span> <span className="text-[#F97316]">focus</span> on what they do best: <span className="text-[#6E59A5]">create</span>, <span className="text-[#0EA5E9]">solve</span>, <span className="text-[#D97706]">and</span> <span className="text-[#F97316]">innovate</span>.
+            <span className="block mb-2">
+              Atlas works with your team, 
+              <span className="text-[#8B5CF6]"> not </span>
+              <span className="text-[#0EA5E9]">instead </span>
+              <span className="text-[#D97706]">of </span>
+              <span className="text-[#F97316]">it</span>.
+            </span>
+            
+            <span className="block mt-8">
+              By handling repetitive tasks, improving safety conditions, 
+              and learning from every interaction, Atlas helps 
+              <span className="text-[#9A3412]"> humans </span>
+              <span className="text-[#F97316]">focus </span>
+              on what they do best: 
+              <span className="text-[#6E59A5]"> create</span>, 
+              <span className="text-[#0EA5E9]"> solve</span>, 
+              <span className="text-[#D97706]"> and </span>
+              <span className="text-[#F97316]"> innovate</span>.
+            </span>
           </h2>
         </div>
       </div>
