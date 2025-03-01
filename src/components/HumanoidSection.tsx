@@ -36,6 +36,14 @@ const HumanoidSection = () => {
   const secondCardVisible = scrollProgress >= 0.33;
   const thirdCardVisible = scrollProgress >= 0.66;
   
+  // Common card styling
+  const cardStyle = {
+    height: '60vh',                 // Further reduced to 60vh for better fit
+    maxHeight: '600px',             // Reduced max height
+    borderRadius: '20px',           // Increased border radius for more modern look
+    transition: 'transform 1.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 1.5s cubic-bezier(0.16, 1, 0.3, 1)'
+  };
+  
   return (
     <div 
       ref={sectionRef}
@@ -72,14 +80,12 @@ const HumanoidSection = () => {
           >
             {/* Base Card - Always visible at the bottom of the stack */}
             <div 
-              className="absolute inset-0 rounded-3xl overflow-hidden will-change-transform"
+              className="absolute inset-0 overflow-hidden will-change-transform shadow-xl"
               style={{
+                ...cardStyle,
                 zIndex: 10,
-                transform: `translateY(${scrollProgress === 0 ? 120 : 100}px) scale(0.9)`,
+                transform: `translateY(${scrollProgress === 0 ? 110 : 90}px) scale(0.9)`,
                 opacity: 0.9,
-                transition: 'transform 1.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 1.5s cubic-bezier(0.16, 1, 0.3, 1)',
-                height: '65vh', // Reduced from 70vh to 65vh
-                maxHeight: '650px' // Reduced from 700px to 650px
               }}
             >
               {/* Background with gradient overlay */}
@@ -97,9 +103,9 @@ const HumanoidSection = () => {
                 </div>
               </div>
               
-              <div className="relative z-10 p-5 sm:p-7 md:p-10 h-full flex items-center">
+              <div className="relative z-10 p-5 sm:p-6 md:p-8 h-full flex items-center">
                 <div className="max-w-lg">
-                  <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-3xl font-display text-white font-bold leading-tight mb-4">
+                  <h3 className="text-xl sm:text-2xl md:text-3xl font-display text-white font-bold leading-tight mb-4">
                     We're giving AI a way to navigate the physical world
                   </h3>
                 </div>
@@ -108,15 +114,13 @@ const HumanoidSection = () => {
             
             {/* Second Card - Appears on scroll */}
             <div 
-              className="absolute inset-0 rounded-3xl overflow-hidden will-change-transform" 
+              className="absolute inset-0 overflow-hidden will-change-transform shadow-xl" 
               style={{
+                ...cardStyle,
                 zIndex: 20,
-                transform: `translateY(${secondCardVisible ? (scrollProgress < 0.5 ? 60 : 50) : 200}px) scale(0.95)`,
+                transform: `translateY(${secondCardVisible ? (scrollProgress < 0.5 ? 55 : 45) : 200}px) scale(0.95)`,
                 opacity: secondCardVisible ? 1 : 0,
                 pointerEvents: secondCardVisible ? 'auto' : 'none',
-                transition: 'transform 1.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 1.5s cubic-bezier(0.16, 1, 0.3, 1)',
-                height: '65vh', // Reduced from 70vh to 65vh
-                maxHeight: '650px' // Reduced from 700px to 650px
               }}
             >
               {/* Background with gradient overlay */}
@@ -134,9 +138,9 @@ const HumanoidSection = () => {
                 </div>
               </div>
               
-              <div className="relative z-10 p-5 sm:p-7 md:p-10 h-full flex items-center">
+              <div className="relative z-10 p-5 sm:p-6 md:p-8 h-full flex items-center">
                 <div className="max-w-lg">
-                  <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-3xl font-display text-white font-bold leading-tight mb-4">
+                  <h3 className="text-xl sm:text-2xl md:text-3xl font-display text-white font-bold leading-tight mb-4">
                     We're bringing adaptive intelligence to where humans work
                   </h3>
                 </div>
@@ -145,15 +149,13 @@ const HumanoidSection = () => {
             
             {/* Third Card - Appears on more scroll */}
             <div 
-              className="absolute inset-0 rounded-3xl overflow-hidden will-change-transform" 
+              className="absolute inset-0 overflow-hidden will-change-transform shadow-xl" 
               style={{
+                ...cardStyle,
                 zIndex: 30,
-                transform: `translateY(${thirdCardVisible ? (scrollProgress < 0.8 ? 20 : 0) : 200}px) scale(1)`,
+                transform: `translateY(${thirdCardVisible ? (scrollProgress < 0.8 ? 15 : 0) : 200}px) scale(1)`,
                 opacity: thirdCardVisible ? 1 : 0,
                 pointerEvents: thirdCardVisible ? 'auto' : 'none',
-                transition: 'transform 1.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 1.5s cubic-bezier(0.16, 1, 0.3, 1)',
-                height: '65vh', // Reduced from 70vh to 65vh
-                maxHeight: '650px' // Reduced from 700px to 650px
               }}
             >
               {/* Background with gradient overlay */}
@@ -171,9 +173,9 @@ const HumanoidSection = () => {
                 </div>
               </div>
               
-              <div className="relative z-10 p-5 sm:p-7 md:p-10 h-full flex items-center">
+              <div className="relative z-10 p-5 sm:p-6 md:p-8 h-full flex items-center">
                 <div className="max-w-lg">
-                  <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-3xl font-display text-white font-bold leading-tight mb-4">
+                  <h3 className="text-xl sm:text-2xl md:text-3xl font-display text-white font-bold leading-tight mb-4">
                     We're creating companions, <span className="text-[#FC4D0A]">not replacements</span>
                   </h3>
                 </div>
