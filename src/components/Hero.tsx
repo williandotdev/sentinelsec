@@ -2,6 +2,8 @@
 import React, { useEffect, useRef } from "react";
 import { cn } from "@/lib/utils";
 import { ArrowRight } from "lucide-react";
+import { Player } from "@lottiefiles/react-lottie-player";
+
 const Hero = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const imageRef = useRef<HTMLImageElement>(null);
@@ -107,7 +109,16 @@ const Hero = () => {
               <img ref={imageRef} src="/lovable-uploads/5663820f-6c97-4492-9210-9eaa1a8dc415.png" alt="Atlas Robot" className="w-full h-auto object-cover transition-transform duration-500 ease-out" style={{
               transformStyle: 'preserve-3d'
             }} />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-50 mix-blend-overlay"></div>
+              {/* Lottie animation overlay */}
+              <div className="absolute inset-0 z-10">
+                <Player
+                  autoplay
+                  loop
+                  src="/loop-header.lottie"
+                  style={{ width: '100%', height: '100%' }}
+                />
+              </div>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-50 mix-blend-overlay z-20"></div>
             </div>
           </div>
         </div>
