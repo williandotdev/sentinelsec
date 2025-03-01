@@ -7,11 +7,12 @@ const HumanoidSection = () => {
       <div className="container px-6 lg:px-8 mx-auto">
         <div className="mb-8">
           <div className="flex items-center gap-4 mb-4">
-            <div className="inline-flex items-center justify-center w-10 h-10 rounded-full border border-pulse-500 text-pulse-500">
-              <span className="text-sm font-medium">02</span>
-            </div>
-            <div className="inline-flex items-center justify-center px-4 py-1 rounded-full border border-pulse-500 text-pulse-500">
-              <span className="text-sm font-medium">Humanoid</span>
+            {/* Updated styling to match Hero section's Purpose button */}
+            <div className="pulse-chip opacity-0 animate-fade-in" style={{
+              animationDelay: "0.1s"
+            }}>
+              <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-pulse-500 text-white mr-2">02</span>
+              <span>Humanoid</span>
             </div>
           </div>
           
