@@ -50,8 +50,8 @@ const RobotShowcaseSection = () => {
           
           <div className="relative w-full max-w-4xl overflow-hidden rounded-3xl shadow-2xl">
             <img 
-              src="/lovable-uploads/af412c03-21e4-4856-82ff-d1a975dc84a9.png" 
-              alt="Advanced humanoid robot with orange torso and white limbs" 
+              src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e" 
+              alt="Advanced humanoid robot with white exterior" 
               className="w-full object-cover"
             />
             <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-8">
