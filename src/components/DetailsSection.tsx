@@ -44,14 +44,14 @@ const DetailsSection = () => {
             <div 
               className="relative h-64 bg-gradient-to-br from-dark-900 via-dark-800 to-pulse-600 p-8 flex items-end"
             >
-              <h2 className="text-4xl font-display text-white font-bold">
+              <h2 className="text-3xl font-display text-white font-bold">
                 The details
               </h2>
             </div>
             
             {/* Card Content */}
             <div className="bg-white p-8">
-              <h3 className="text-2xl font-display mb-8">
+              <h3 className="text-xl font-display mb-8">
                 Precision engineering meets adaptive intelligence
               </h3>
 
@@ -63,7 +63,7 @@ const DetailsSection = () => {
                     </svg>
                   </div>
                   <div className="flex-1">
-                    <span className="font-semibold text-lg">Height:</span> 5'8"
+                    <span className="font-semibold text-base">Height:</span> 5'8"
                   </div>
                 </div>
 
@@ -74,7 +74,7 @@ const DetailsSection = () => {
                     </svg>
                   </div>
                   <div className="flex-1">
-                    <span className="font-semibold text-lg">Capacity:</span> 55lbs
+                    <span className="font-semibold text-base">Capacity:</span> 55lbs
                   </div>
                 </div>
 
@@ -85,7 +85,7 @@ const DetailsSection = () => {
                     </svg>
                   </div>
                   <div className="flex-1">
-                    <span className="font-semibold text-lg">Weight:</span> 140lbs
+                    <span className="font-semibold text-base">Weight:</span> 140lbs
                   </div>
                 </div>
 
@@ -96,7 +96,7 @@ const DetailsSection = () => {
                     </svg>
                   </div>
                   <div className="flex-1">
-                    <span className="font-semibold text-lg">Uptime:</span> 6hr
+                    <span className="font-semibold text-base">Uptime:</span> 6hr
                   </div>
                 </div>
 
@@ -107,7 +107,7 @@ const DetailsSection = () => {
                     </svg>
                   </div>
                   <div className="flex-1">
-                    <span className="font-semibold text-lg">Movement:</span> 1.5M/S
+                    <span className="font-semibold text-base">Movement:</span> 1.5M/S
                   </div>
                 </div>
               </div>
@@ -120,10 +120,10 @@ const DetailsSection = () => {
             <div 
               className="relative h-64 bg-gradient-to-br from-dark-900 via-dark-800 to-dark-700 p-8 flex flex-col items-start"
             >
-              <div className="inline-block px-6 py-2 border border-pulse-500 text-pulse-500 rounded-full text-sm mb-4">
+              <div className="inline-block px-6 py-2 border border-pulse-500 text-pulse-500 rounded-full text-xs mb-4">
                 Request a demo
               </div>
-              <h2 className="text-4xl font-display text-white font-bold mt-auto">
+              <h2 className="text-3xl font-display text-white font-bold mt-auto">
                 See it for yourself
               </h2>
             </div>
