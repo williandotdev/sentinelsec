@@ -44,17 +44,10 @@ const Navbar = () => {
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex space-x-8">
-          <a href="#features" className="nav-link">Features</a>
-          <a href="#how-it-works" className="nav-link">How It Works</a>
-          <a href="#testimonials" className="nav-link">Testimonials</a>
+          <a href="#" className="nav-link">Home</a>
+          <a href="#about" className="nav-link">About</a>
           <a href="#contact" className="nav-link">Contact</a>
         </nav>
-
-        <div className="hidden md:block">
-          <a href="#get-access" className="button-primary">
-            Request Access
-          </a>
-        </div>
 
         {/* Mobile menu button */}
         <button 
@@ -73,25 +66,18 @@ const Navbar = () => {
       )}>
         <nav className="flex flex-col space-y-6 items-center">
           <a 
-            href="#features" 
+            href="#" 
             className="text-xl font-medium" 
             onClick={() => setIsMenuOpen(false)}
           >
-            Features
+            Home
           </a>
           <a 
-            href="#how-it-works" 
+            href="#about" 
             className="text-xl font-medium" 
             onClick={() => setIsMenuOpen(false)}
           >
-            How It Works
-          </a>
-          <a 
-            href="#testimonials" 
-            className="text-xl font-medium" 
-            onClick={() => setIsMenuOpen(false)}
-          >
-            Testimonials
+            About
           </a>
           <a 
             href="#contact" 
@@ -99,13 +85,6 @@ const Navbar = () => {
             onClick={() => setIsMenuOpen(false)}
           >
             Contact
-          </a>
-          <a 
-            href="#get-access" 
-            className="button-primary w-full text-center mt-8" 
-            onClick={() => setIsMenuOpen(false)}
-          >
-            Request Access
           </a>
         </nav>
       </div>
