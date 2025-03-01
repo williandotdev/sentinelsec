@@ -75,10 +75,10 @@ const HumanoidSection = () => {
               className="absolute inset-0 rounded-3xl overflow-hidden will-change-transform"
               style={{
                 zIndex: 10,
-                transform: `translateY(60px) scale(0.9)`,
+                transform: `translateY(80px) scale(0.9)`,
                 opacity: 0.9,
                 transition: 'transform 1.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 1.5s cubic-bezier(0.16, 1, 0.3, 1)',
-                height: '600px' // Increased height from 500px to 600px
+                height: '700px' // Increased height from 600px to 700px
               }}
             >
               {/* Background with gradient overlay */}
@@ -110,11 +110,11 @@ const HumanoidSection = () => {
               className="absolute inset-0 rounded-3xl overflow-hidden will-change-transform" 
               style={{
                 zIndex: 20,
-                transform: `translateY(${secondCardVisible ? 30 : 200}px) scale(0.95)`,
+                transform: `translateY(${secondCardVisible ? 40 : 200}px) scale(0.95)`,
                 opacity: secondCardVisible ? 1 : 0,
                 pointerEvents: secondCardVisible ? 'auto' : 'none',
                 transition: 'transform 1.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 1.5s cubic-bezier(0.16, 1, 0.3, 1)',
-                height: '600px' // Increased height from 500px to 600px
+                height: '700px' // Increased height from 600px to 700px
               }}
             >
               {/* Background with gradient overlay */}
@@ -150,7 +150,7 @@ const HumanoidSection = () => {
                 opacity: thirdCardVisible ? 1 : 0,
                 pointerEvents: thirdCardVisible ? 'auto' : 'none',
                 transition: 'transform 1.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 1.5s cubic-bezier(0.16, 1, 0.3, 1)',
-                height: '600px' // Increased height from 500px to 600px
+                height: '700px' // Increased height from 600px to 700px
               }}
             >
               {/* Background with gradient overlay */}
