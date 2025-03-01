@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { toast } from "sonner";
 
@@ -120,9 +121,14 @@ const DetailsSection = () => {
 
           {/* Right Card - Contact Form */}
           <div className="rounded-3xl overflow-hidden shadow-elegant">
-            {/* Card Header with gradient */}
+            {/* Card Header with background image instead of gradient */}
             <div 
-              className="relative h-64 bg-gradient-to-br from-dark-900 via-dark-800 to-dark-700 p-8 flex flex-col items-start"
+              className="relative h-64 p-8 flex flex-col items-start"
+              style={{
+                backgroundImage: "url('/background-section1.png')",
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+              }}
             >
               <div className="inline-block px-6 py-2 border border-pulse-500 text-pulse-500 rounded-full text-xs mb-4">
                 Request a demo
