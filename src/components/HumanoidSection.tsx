@@ -50,7 +50,7 @@ const HumanoidSection = () => {
         id="why-humanoid"
       >
         <div className="container px-6 lg:px-8 mx-auto h-full flex flex-col">
-          <div className="mb-8">
+          <div className="mb-6">
             <div className="flex items-center gap-4 mb-4">
               <div className="pulse-chip opacity-0 animate-fade-in" style={{
                 animationDelay: "0.1s"
@@ -60,7 +60,7 @@ const HumanoidSection = () => {
               </div>
             </div>
             
-            <h2 className="section-title text-4xl sm:text-5xl font-display font-bold mb-8">
+            <h2 className="section-title text-4xl sm:text-5xl font-display font-bold mb-4">
               Why Humanoid
             </h2>
           </div>
@@ -75,10 +75,11 @@ const HumanoidSection = () => {
               className="absolute inset-0 rounded-3xl overflow-hidden will-change-transform"
               style={{
                 zIndex: 10,
-                transform: `translateY(80px) scale(0.9)`,
+                transform: `translateY(100px) scale(0.9)`,
                 opacity: 0.9,
                 transition: 'transform 1.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 1.5s cubic-bezier(0.16, 1, 0.3, 1)',
-                height: '700px' // Increased height from 600px to 700px
+                height: '75vh', // Use viewport height instead of fixed pixels
+                maxHeight: '800px' // Add max height for larger screens
               }}
             >
               {/* Background with gradient overlay */}
@@ -96,9 +97,9 @@ const HumanoidSection = () => {
                 </div>
               </div>
               
-              <div className="relative z-10 p-12 md:p-16 h-full flex items-center">
+              <div className="relative z-10 p-8 sm:p-12 md:p-16 h-full flex items-center">
                 <div className="max-w-lg">
-                  <h3 className="text-3xl md:text-4xl lg:text-5xl font-display text-white font-bold leading-tight mb-6">
+                  <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-display text-white font-bold leading-tight mb-6">
                     We're giving AI a way to navigate the physical world
                   </h3>
                 </div>
@@ -110,11 +111,12 @@ const HumanoidSection = () => {
               className="absolute inset-0 rounded-3xl overflow-hidden will-change-transform" 
               style={{
                 zIndex: 20,
-                transform: `translateY(${secondCardVisible ? 40 : 200}px) scale(0.95)`,
+                transform: `translateY(${secondCardVisible ? 50 : 200}px) scale(0.95)`,
                 opacity: secondCardVisible ? 1 : 0,
                 pointerEvents: secondCardVisible ? 'auto' : 'none',
                 transition: 'transform 1.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 1.5s cubic-bezier(0.16, 1, 0.3, 1)',
-                height: '700px' // Increased height from 600px to 700px
+                height: '75vh', // Use viewport height instead of fixed pixels
+                maxHeight: '800px' // Add max height for larger screens
               }}
             >
               {/* Background with gradient overlay */}
@@ -132,9 +134,9 @@ const HumanoidSection = () => {
                 </div>
               </div>
               
-              <div className="relative z-10 p-12 md:p-16 h-full flex items-center">
+              <div className="relative z-10 p-8 sm:p-12 md:p-16 h-full flex items-center">
                 <div className="max-w-lg">
-                  <h3 className="text-3xl md:text-4xl lg:text-5xl font-display text-white font-bold leading-tight mb-6">
+                  <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-display text-white font-bold leading-tight mb-6">
                     We're bringing adaptive intelligence to where humans work
                   </h3>
                 </div>
@@ -150,7 +152,8 @@ const HumanoidSection = () => {
                 opacity: thirdCardVisible ? 1 : 0,
                 pointerEvents: thirdCardVisible ? 'auto' : 'none',
                 transition: 'transform 1.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 1.5s cubic-bezier(0.16, 1, 0.3, 1)',
-                height: '700px' // Increased height from 600px to 700px
+                height: '75vh', // Use viewport height instead of fixed pixels
+                maxHeight: '800px' // Add max height for larger screens
               }}
             >
               {/* Background with gradient overlay */}
@@ -168,9 +171,9 @@ const HumanoidSection = () => {
                 </div>
               </div>
               
-              <div className="relative z-10 p-12 md:p-16 h-full flex items-center">
+              <div className="relative z-10 p-8 sm:p-12 md:p-16 h-full flex items-center">
                 <div className="max-w-lg">
-                  <h3 className="text-3xl md:text-4xl lg:text-5xl font-display text-white font-bold leading-tight mb-6">
+                  <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-display text-white font-bold leading-tight mb-6">
                     We're creating companions, <span className="text-[#FC4D0A]">not replacements</span>
                   </h3>
                 </div>
