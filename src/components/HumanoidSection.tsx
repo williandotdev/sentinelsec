@@ -1,4 +1,3 @@
-
 import React, { useEffect, useRef, useState } from "react";
 
 const HumanoidSection = () => {
@@ -15,19 +14,18 @@ const HumanoidSection = () => {
       const sectionHeight = rect.height;
       const windowHeight = window.innerHeight;
       
-      // Make the section sticky for a longer duration
+      // Keep the sticky behavior consistent
       const shouldBeSticky = sectionTop <= 0 && sectionTop > -sectionHeight * 2.5 + windowHeight;
       setIsSticky(shouldBeSticky);
       
-      // Improve scroll progress calculation to ensure we reach values needed for all cards
+      // Improve scroll progress calculation to ensure smooth transitions
       let progress = 0;
       
       if (sectionTop <= windowHeight * 0.9) {
-        // Use a smaller multiplier to ensure we can reach full progress (1.0) more easily
-        progress = Math.min(1, Math.max(0, (windowHeight * 0.9 - sectionTop) / (sectionHeight * 2)));
+        // Adjust multiplier to create a more linear progression through all cards
+        progress = Math.min(1, Math.max(0, (windowHeight * 0.9 - sectionTop) / (sectionHeight * 1.8)));
       }
       
-      // Log the progress to help with debugging
       console.log("Scroll progress:", progress);
       
       setScrollProgress(progress);
@@ -39,10 +37,9 @@ const HumanoidSection = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
   
-  // Adjust the thresholds to make the third card appear earlier
-  // This ensures the third card becomes visible before reaching the end of the section
+  // Adjust thresholds to create equal spacing between card transitions
   const secondCardVisible = scrollProgress >= 0.15;
-  const thirdCardVisible = scrollProgress >= 0.50; // Lowered from 0.70 to ensure visibility
+  const thirdCardVisible = scrollProgress >= 0.40; // Lower threshold for third card
   
   return (
     <section 
@@ -51,7 +48,7 @@ const HumanoidSection = () => {
       ref={sectionRef}
       style={{ 
         height: isSticky ? '100vh' : 'auto',
-        minHeight: '250vh', // Increase section height for longer scrolling
+        minHeight: '250vh', // Keep increased section height for longer scrolling
         transition: 'height 0.3s cubic-bezier(0.4, 0, 0.2, 1)'
       }}
     >
@@ -145,7 +142,7 @@ const HumanoidSection = () => {
             </div>
           </div>
           
-          {/* Third Card - Appears on more scroll */}
+          {/* Third Card - Appears on more scroll - Fixed to match behavior of other cards */}
           <div 
             className="absolute w-full h-[600px] rounded-3xl overflow-hidden will-change-transform" 
             style={{
