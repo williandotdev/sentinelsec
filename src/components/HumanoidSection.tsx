@@ -73,7 +73,7 @@ const HumanoidSection = () => {
           <div className="relative w-full h-[500px] rounded-3xl overflow-hidden">
             {/* Background image */}
             <div className="absolute inset-0 z-0" style={{
-            backgroundImage: "url('/background-section1.png')",
+            backgroundImage: "url('/lovable-uploads/16133e2c-147f-4d9e-82a3-bd1da07444ee.png')",
             backgroundSize: "cover",
             backgroundPosition: "center"
           }}></div>
