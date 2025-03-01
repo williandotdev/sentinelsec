@@ -52,7 +52,7 @@ const Hero = () => {
   }, []);
   return <section className="overflow-hidden relative bg-cover" id="hero" style={{
     backgroundImage: 'url("/Header-background.png")',
-    backgroundPosition: 'center 20%',
+    backgroundPosition: 'center 30%', // Updated from 20% to 30% to move gradient down
     padding: '140px 40px 80px'
   }}>
       {/* Background gradient */}
