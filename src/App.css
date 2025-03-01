@@ -51,7 +51,5 @@
 
 /* Improve animation performance */
 .absolute {
-  will-change: transform, opacity;
   backface-visibility: hidden;
-  transition: transform 1s ease-out, opacity 1s ease-out;
 }

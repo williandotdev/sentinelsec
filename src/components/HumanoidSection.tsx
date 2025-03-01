@@ -16,6 +16,7 @@ const HumanoidSection = () => {
       const windowHeight = window.innerHeight;
       
       // Determine if section should be sticky
+      // Only stick when section is at the top and not past its height
       const shouldBeSticky = sectionTop <= 0 && sectionTop > -sectionHeight + windowHeight;
       setIsSticky(shouldBeSticky);
       
@@ -23,16 +24,15 @@ const HumanoidSection = () => {
       // Start when the section enters viewport, end when it leaves
       let progress = 0;
       
-      if (sectionTop <= windowHeight * 0.8) { // Start when 80% of the section is visible (previously 70%)
+      if (sectionTop <= windowHeight * 0.8) { // Start when 80% of the section is visible
         // Calculate progress as percentage through the section, but slow it down
-        // by dividing by a larger value (sectionHeight * 0.8 instead of 0.6)
         progress = Math.min(1, Math.max(0, (windowHeight * 0.8 - sectionTop) / (sectionHeight * 0.8)));
       }
       
       setScrollProgress(progress);
     };
     
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll(); // Initialize on mount
     
     return () => window.removeEventListener('scroll', handleScroll);
@@ -40,8 +40,8 @@ const HumanoidSection = () => {
   
   // Define clear breakpoints for card transitions
   // Adjust these breakpoints to create a more gradual transition
-  const secondCardVisible = scrollProgress >= 0.25; // Previously 0.33
-  const thirdCardVisible = scrollProgress >= 0.6; // Previously 0.67
+  const secondCardVisible = scrollProgress >= 0.25;
+  const thirdCardVisible = scrollProgress >= 0.6;
   
   return (
     <section 
@@ -50,7 +50,7 @@ const HumanoidSection = () => {
       ref={sectionRef}
       style={{ 
         height: isSticky ? '100vh' : 'auto',
-        transition: 'height 0.3s ease-out'
+        transition: 'height 0.3s cubic-bezier(0.4, 0, 0.2, 1)' // Using ease-out cubic-bezier for smoother transition
       }}
     >
       <div className="container px-6 lg:px-8 mx-auto">
@@ -73,11 +73,12 @@ const HumanoidSection = () => {
         <div className="relative h-[700px] perspective-1000">
           {/* Base Card - Always visible at the bottom of the stack */}
           <div 
-            className="absolute w-full h-[600px] rounded-3xl overflow-hidden transition-all duration-1000"
+            className="absolute w-full h-[600px] rounded-3xl overflow-hidden will-change-transform"
             style={{
               zIndex: 10, // Always at the bottom
               transform: `scale(0.9)`,
-              opacity: 0.9
+              opacity: 0.9,
+              transition: 'transform 1s cubic-bezier(0.16, 1, 0.3, 1), opacity 1s cubic-bezier(0.16, 1, 0.3, 1)'
             }}
           >
             {/* Background with gradient overlay */}
@@ -106,12 +107,13 @@ const HumanoidSection = () => {
           
           {/* Second Card - Appears on scroll */}
           <div 
-            className="absolute w-full h-[600px] rounded-3xl overflow-hidden transition-all duration-1000" 
+            className="absolute w-full h-[600px] rounded-3xl overflow-hidden will-change-transform" 
             style={{
               zIndex: 20,
               transform: `translateY(${secondCardVisible ? 30 : 200}px) scale(0.95)`,
               opacity: secondCardVisible ? 1 : 0,
-              pointerEvents: secondCardVisible ? 'auto' : 'none'
+              pointerEvents: secondCardVisible ? 'auto' : 'none',
+              transition: 'transform 1s cubic-bezier(0.16, 1, 0.3, 1), opacity 1s cubic-bezier(0.16, 1, 0.3, 1)'
             }}
           >
             {/* Background with gradient overlay */}
@@ -140,12 +142,13 @@ const HumanoidSection = () => {
           
           {/* Third Card - Appears on more scroll */}
           <div 
-            className="absolute w-full h-[600px] rounded-3xl overflow-hidden transition-all duration-1000" 
+            className="absolute w-full h-[600px] rounded-3xl overflow-hidden will-change-transform" 
             style={{
               zIndex: 30,
               transform: `translateY(${thirdCardVisible ? 60 : 200}px) scale(1)`,
               opacity: thirdCardVisible ? 1 : 0,
-              pointerEvents: thirdCardVisible ? 'auto' : 'none'
+              pointerEvents: thirdCardVisible ? 'auto' : 'none',
+              transition: 'transform 1s cubic-bezier(0.16, 1, 0.3, 1), opacity 1s cubic-bezier(0.16, 1, 0.3, 1)'
             }}
           >
             {/* Background with gradient overlay */}
