@@ -1,3 +1,4 @@
+
 import React, { useEffect, useRef, useState } from "react";
 const HumanoidSection = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -89,7 +90,7 @@ const HumanoidSection = () => {
               
               <div className="relative z-10 p-5 sm:p-6 md:p-8 h-full flex items-center">
                 <div className="max-w-lg">
-                  <h3 className="text-xl sm:text-2xl font-display text-white font-bold leading-tight mb-4 md:text-5xl">
+                  <h3 className="text-xl sm:text-2xl md:text-3xl font-display text-white font-bold leading-tight mb-4">
                     We're giving AI a way to navigate the physical world
                   </h3>
                 </div>
