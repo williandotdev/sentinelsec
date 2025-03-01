@@ -1,8 +1,75 @@
 
-import React from "react";
+import React, { useEffect, useRef } from "react";
+
 const HumanoidSection = () => {
-  return <section className="w-full overflow-hidden py-16 md:py-24" id="why-humanoid">
-      <div className="container px-6 lg:px-8 mx-auto">
+  const sectionRef = useRef<HTMLElement>(null);
+  const cardsContainerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    const cardsContainer = cardsContainerRef.current;
+    const cards = cardsContainer?.querySelectorAll('.card-sticky') || [];
+    
+    if (!section || !cardsContainer || cards.length === 0) return;
+    
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            section.classList.add('is-sticky');
+          } else {
+            section.classList.remove('is-sticky');
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+    
+    observer.observe(section);
+    
+    const handleScroll = () => {
+      const sectionTop = section.offsetTop;
+      const sectionHeight = section.offsetHeight;
+      const scrollY = window.scrollY;
+      
+      // Calculate how far through the section the user has scrolled
+      const scrollProgress = (scrollY - sectionTop) / (sectionHeight - window.innerHeight);
+      
+      if (scrollProgress >= 0 && scrollProgress <= 1) {
+        // Determine which card should be visible based on scroll progress
+        const cardIndex = Math.min(
+          Math.floor(scrollProgress * cards.length),
+          cards.length - 1
+        );
+        
+        cards.forEach((card, index) => {
+          if (index <= cardIndex) {
+            (card as HTMLElement).style.opacity = '1';
+            (card as HTMLElement).style.transform = `translateY(0)`;
+          } else {
+            (card as HTMLElement).style.opacity = '0';
+            (card as HTMLElement).style.transform = `translateY(50px)`;
+          }
+        });
+      }
+    };
+    
+    window.addEventListener('scroll', handleScroll);
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      observer.disconnect();
+    };
+  }, []);
+
+  return (
+    <section 
+      className="w-full overflow-hidden py-16 md:py-24 sticky-section" 
+      id="why-humanoid"
+      ref={sectionRef}
+      style={{ height: '200vh' }} // Make the section taller to accommodate scrolling
+    >
+      <div className="container px-6 lg:px-8 mx-auto sticky top-20" style={{ height: '80vh' }}>
         <div className="mb-8">
           <div className="flex items-center gap-4 mb-4">
             {/* Updated styling to match Hero section's Purpose button */}
@@ -19,10 +86,10 @@ const HumanoidSection = () => {
           </h2>
         </div>
         
-        {/* Changed from grid to flex column with gap */}
-        <div className="flex flex-col gap-6">
+        {/* Cards container */}
+        <div className="flex flex-col gap-6" ref={cardsContainerRef}>
           {/* Card 1 */}
-          <div className="relative w-full h-[600px] rounded-3xl overflow-hidden">
+          <div className="relative w-full h-[600px] rounded-3xl overflow-hidden card-sticky transition-all duration-500">
             {/* Repositioned background element with gradient overlay */}
             <div className="absolute inset-0 z-0 bg-gradient-to-b from-pulse-900/40 to-dark-900/80" style={{
               backgroundImage: "url('/background-section1.png')",
@@ -48,7 +115,7 @@ const HumanoidSection = () => {
           </div>
           
           {/* Card 2 */}
-          <div className="relative w-full h-[600px] rounded-3xl overflow-hidden">
+          <div className="relative w-full h-[600px] rounded-3xl overflow-hidden card-sticky transition-all duration-500">
             {/* Repositioned background element with gradient overlay */}
             <div className="absolute inset-0 z-0 bg-gradient-to-b from-pulse-900/40 to-dark-900/80" style={{
               backgroundImage: "url('/background-section2.png')",
@@ -72,7 +139,7 @@ const HumanoidSection = () => {
           </div>
           
           {/* Card 3 */}
-          <div className="relative w-full h-[600px] rounded-3xl overflow-hidden">
+          <div className="relative w-full h-[600px] rounded-3xl overflow-hidden card-sticky transition-all duration-500">
             {/* Repositioned background element with gradient overlay */}
             <div className="absolute inset-0 z-0 bg-gradient-to-b from-pulse-900/40 to-dark-900/80" style={{
               backgroundImage: "url('/background-section3.png')",
@@ -98,6 +165,8 @@ const HumanoidSection = () => {
           </div>
         </div>
       </div>
-    </section>;
+    </section>
+  );
 };
+
 export default HumanoidSection;
