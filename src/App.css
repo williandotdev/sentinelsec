@@ -63,6 +63,22 @@
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
 }
 
+/* Add new card animation */
+@keyframes card-enter {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.animate-card-enter {
+  animation: card-enter 0.4s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+}
+
 /* Mobile optimizations */
 @media (max-width: 640px) {
   .container {
