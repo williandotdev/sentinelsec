@@ -17,16 +17,17 @@ const HumanoidSection = () => {
       
       // Determine if section should be sticky
       // Only stick when section is at the top and not past its height
-      const shouldBeSticky = sectionTop <= 0 && sectionTop > -sectionHeight + windowHeight;
+      const shouldBeSticky = sectionTop <= 0 && sectionTop > -sectionHeight * 1.5 + windowHeight;
       setIsSticky(shouldBeSticky);
       
       // Calculate scroll progress within the section
       // Start when the section enters viewport, end when it leaves
       let progress = 0;
       
-      if (sectionTop <= windowHeight * 0.8) { // Start when 80% of the section is visible
-        // Calculate progress as percentage through the section, but slow it down
-        progress = Math.min(1, Math.max(0, (windowHeight * 0.8 - sectionTop) / (sectionHeight * 0.8)));
+      if (sectionTop <= windowHeight * 0.9) { // Start when 90% of the section is visible
+        // Calculate progress as percentage through a much longer virtual section (2x the actual height)
+        // This effectively makes the scroll distance much longer
+        progress = Math.min(1, Math.max(0, (windowHeight * 0.9 - sectionTop) / (sectionHeight * 2)));
       }
       
       setScrollProgress(progress);
@@ -38,10 +39,10 @@ const HumanoidSection = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
   
-  // Define clear breakpoints for card transitions
-  // Adjust these breakpoints to create a more gradual transition
-  const secondCardVisible = scrollProgress >= 0.25;
-  const thirdCardVisible = scrollProgress >= 0.6;
+  // Define clear breakpoints for card transitions with much more space between them
+  // This creates a longer scroll distance between card transitions
+  const secondCardVisible = scrollProgress >= 0.15; // Reduced from 0.25
+  const thirdCardVisible = scrollProgress >= 0.70; // Increased from 0.60
   
   return (
     <section 
@@ -50,6 +51,7 @@ const HumanoidSection = () => {
       ref={sectionRef}
       style={{ 
         height: isSticky ? '100vh' : 'auto',
+        minHeight: '150vh', // Ensure section has extra vertical space
         transition: 'height 0.3s cubic-bezier(0.4, 0, 0.2, 1)' // Using ease-out cubic-bezier for smoother transition
       }}
     >
@@ -78,7 +80,7 @@ const HumanoidSection = () => {
               zIndex: 10, // Always at the bottom
               transform: `scale(0.9)`,
               opacity: 0.9,
-              transition: 'transform 1s cubic-bezier(0.16, 1, 0.3, 1), opacity 1s cubic-bezier(0.16, 1, 0.3, 1)'
+              transition: 'transform 1.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 1.5s cubic-bezier(0.16, 1, 0.3, 1)'
             }}
           >
             {/* Background with gradient overlay */}
@@ -113,7 +115,7 @@ const HumanoidSection = () => {
               transform: `translateY(${secondCardVisible ? 30 : 200}px) scale(0.95)`,
               opacity: secondCardVisible ? 1 : 0,
               pointerEvents: secondCardVisible ? 'auto' : 'none',
-              transition: 'transform 1s cubic-bezier(0.16, 1, 0.3, 1), opacity 1s cubic-bezier(0.16, 1, 0.3, 1)'
+              transition: 'transform 1.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 1.5s cubic-bezier(0.16, 1, 0.3, 1)'
             }}
           >
             {/* Background with gradient overlay */}
@@ -148,7 +150,7 @@ const HumanoidSection = () => {
               transform: `translateY(${thirdCardVisible ? 60 : 200}px) scale(1)`,
               opacity: thirdCardVisible ? 1 : 0,
               pointerEvents: thirdCardVisible ? 'auto' : 'none',
-              transition: 'transform 1s cubic-bezier(0.16, 1, 0.3, 1), opacity 1s cubic-bezier(0.16, 1, 0.3, 1)'
+              transition: 'transform 1.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 1.5s cubic-bezier(0.16, 1, 0.3, 1)'
             }}
           >
             {/* Background with gradient overlay */}
