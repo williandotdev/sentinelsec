@@ -77,7 +77,8 @@ const HumanoidSection = () => {
                 zIndex: 10,
                 transform: `translateY(60px) scale(0.9)`,
                 opacity: 0.9,
-                transition: 'transform 1.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 1.5s cubic-bezier(0.16, 1, 0.3, 1)'
+                transition: 'transform 1.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 1.5s cubic-bezier(0.16, 1, 0.3, 1)',
+                height: '500px' // Increased height from default
               }}
             >
               {/* Background with gradient overlay */}
@@ -112,7 +113,8 @@ const HumanoidSection = () => {
                 transform: `translateY(${secondCardVisible ? 30 : 200}px) scale(0.95)`,
                 opacity: secondCardVisible ? 1 : 0,
                 pointerEvents: secondCardVisible ? 'auto' : 'none',
-                transition: 'transform 1.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 1.5s cubic-bezier(0.16, 1, 0.3, 1)'
+                transition: 'transform 1.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 1.5s cubic-bezier(0.16, 1, 0.3, 1)',
+                height: '500px' // Increased height from default
               }}
             >
               {/* Background with gradient overlay */}
@@ -147,7 +149,8 @@ const HumanoidSection = () => {
                 transform: `translateY(${thirdCardVisible ? 0 : 200}px) scale(1)`,
                 opacity: thirdCardVisible ? 1 : 0,
                 pointerEvents: thirdCardVisible ? 'auto' : 'none',
-                transition: 'transform 1.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 1.5s cubic-bezier(0.16, 1, 0.3, 1)'
+                transition: 'transform 1.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 1.5s cubic-bezier(0.16, 1, 0.3, 1)',
+                height: '500px' // Increased height from default
               }}
             >
               {/* Background with gradient overlay */}
