@@ -55,7 +55,7 @@ const DetailsSection = () => {
             </div>
             
             {/* Card Content */}
-            <div className="bg-white p-8">
+            <div className="bg-white p-8" style={{ backgroundColor: "#FFFFFF", border: "1px solid #ECECEC" }}>
               <h3 className="text-xl font-display mb-8">
                 Precision engineering meets adaptive intelligence
               </h3>
@@ -139,7 +139,7 @@ const DetailsSection = () => {
             </div>
             
             {/* Card Content - Form */}
-            <div className="bg-white p-8">
+            <div className="bg-white p-8" style={{ backgroundColor: "#FFFFFF", border: "1px solid #ECECEC" }}>
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
                   <input
