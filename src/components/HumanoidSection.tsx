@@ -1,3 +1,4 @@
+
 import React, { useEffect, useRef, useState } from "react";
 
 const HumanoidSection = () => {
@@ -42,8 +43,8 @@ const HumanoidSection = () => {
   }}>
       <section className="w-full h-screen py-10 md:py-16 sticky top-0 overflow-hidden bg-white" id="why-humanoid">
         <div className="container px-6 lg:px-8 mx-auto h-full flex flex-col">
-          <div className="mb-4 md:mb-6">
-            <div className="flex items-center gap-4 mb-2 md:mb-4">
+          <div className="mb-2 md:mb-3">
+            <div className="flex items-center gap-4 mb-2 md:mb-2">
               <div className="pulse-chip opacity-0 animate-fade-in" style={{
               animationDelay: "0.1s"
             }}>
@@ -52,7 +53,7 @@ const HumanoidSection = () => {
               </div>
             </div>
             
-            <h2 className="section-title text-3xl sm:text-4xl md:text-5xl font-display font-bold mb-2 md:mb-4">
+            <h2 className="section-title text-3xl sm:text-4xl md:text-5xl font-display font-bold mb-1 md:mb-2">
               Why Humanoid
             </h2>
           </div>
