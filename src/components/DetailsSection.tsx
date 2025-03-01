@@ -68,7 +68,9 @@ const DetailsSection = () => {
                     </svg>
                   </div>
                   <div className="flex-1">
-                    <span className="font-semibold text-base">Height:</span> 5'8"
+                    <div className="p-3 rounded-lg bg-gray-50/80 backdrop-blur-sm border border-gray-100">
+                      <span className="font-semibold text-base">Height:</span> 5'8"
+                    </div>
                   </div>
                 </div>
 
@@ -79,7 +81,9 @@ const DetailsSection = () => {
                     </svg>
                   </div>
                   <div className="flex-1">
-                    <span className="font-semibold text-base">Capacity:</span> 55lbs
+                    <div className="p-3 rounded-lg bg-gray-50/80 backdrop-blur-sm border border-gray-100">
+                      <span className="font-semibold text-base">Capacity:</span> 55lbs
+                    </div>
                   </div>
                 </div>
 
@@ -90,7 +94,9 @@ const DetailsSection = () => {
                     </svg>
                   </div>
                   <div className="flex-1">
-                    <span className="font-semibold text-base">Weight:</span> 140lbs
+                    <div className="p-3 rounded-lg bg-gray-50/80 backdrop-blur-sm border border-gray-100">
+                      <span className="font-semibold text-base">Weight:</span> 140lbs
+                    </div>
                   </div>
                 </div>
 
@@ -101,7 +107,9 @@ const DetailsSection = () => {
                     </svg>
                   </div>
                   <div className="flex-1">
-                    <span className="font-semibold text-base">Uptime:</span> 6hr
+                    <div className="p-3 rounded-lg bg-gray-50/80 backdrop-blur-sm border border-gray-100">
+                      <span className="font-semibold text-base">Uptime:</span> 6hr
+                    </div>
                   </div>
                 </div>
 
@@ -112,7 +120,9 @@ const DetailsSection = () => {
                     </svg>
                   </div>
                   <div className="flex-1">
-                    <span className="font-semibold text-base">Movement:</span> 1.5M/S
+                    <div className="p-3 rounded-lg bg-gray-50/80 backdrop-blur-sm border border-gray-100">
+                      <span className="font-semibold text-base">Movement:</span> 1.5M/S
+                    </div>
                   </div>
                 </div>
               </div>
