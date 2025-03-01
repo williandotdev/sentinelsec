@@ -69,11 +69,11 @@ const HumanoidSection = () => {
             </div>
           </div>
           
-          {/* Card 3 */}
+          {/* Card 3 - Changed background to background-section3.png */}
           <div className="relative w-full h-[500px] rounded-3xl overflow-hidden">
             {/* Background image */}
             <div className="absolute inset-0 z-0" style={{
-            backgroundImage: "url('/background-section1.png')",
+            backgroundImage: "url('/background-section3.png')",
             backgroundSize: "cover",
             backgroundPosition: "center"
           }}></div>
