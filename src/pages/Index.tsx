@@ -11,7 +11,7 @@ import Features from "@/components/Features";
 import Testimonials from "@/components/Testimonials";
 import Newsletter from "@/components/Newsletter";
 import MadeByHumans from "@/components/MadeByHumans";
-import CTA from "@/components/CTA";
+// Removed CTA import
 // Removed Footer import
 
 const Index = () => {
@@ -71,7 +71,7 @@ const Index = () => {
         <Testimonials />
         <Newsletter />
         <MadeByHumans />
-        <CTA />
+        {/* Removed CTA component */}
       </main>
       {/* Removed Footer component */}
     </div>
