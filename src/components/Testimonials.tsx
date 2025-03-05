@@ -43,13 +43,16 @@ const testimonials: TestimonialProps[] = [
 const TestimonialCard = ({ content, author, role, backgroundImage = "/background-section1.png" }: TestimonialProps) => {
   return (
     <div className="bg-cover bg-center rounded-lg p-8 h-full flex flex-col justify-between text-white transform transition-transform duration-300 hover:-translate-y-2 relative overflow-hidden" style={{ backgroundImage: `url('${backgroundImage}')` }}>
-      {/* White square box in the top right corner - now solid white */}
-      <div className="absolute top-0 right-0 w-24 h-24 bg-white"></div>
+      {/* White square box in the top right corner */}
+      <div className="absolute top-0 right-0 w-24 h-24 bg-white z-10"></div>
       
-      <p className="text-xl mb-8 font-medium leading-relaxed">{`"${content}"`}</p>
-      <div>
-        <h4 className="font-semibold text-xl">{author}</h4>
-        <p className="text-white/80">{role}</p>
+      {/* Text content with padding to avoid the white box */}
+      <div className="relative z-0">
+        <p className="text-xl mb-8 font-medium leading-relaxed pr-20">{`"${content}"`}</p>
+        <div>
+          <h4 className="font-semibold text-xl">{author}</h4>
+          <p className="text-white/80">{role}</p>
+        </div>
       </div>
     </div>
   );
