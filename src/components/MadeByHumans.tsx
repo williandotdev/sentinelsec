@@ -16,16 +16,9 @@ const MadeByHumans = () => {
             </span>
             </div>
             
-            <div style={{
-              overflow: "hidden",
-              maxHeight: "80px", 
-              marginTop: "40px"
-            }}>
-              <h2 className="text-4xl sm:text-5xl md:text-7xl font-playfair text-white italic mt-0 mx-0 text-center py-[3px] px-0 font-extralight lg:text-8xl" 
-                 style={{
-                   marginBottom: "-30px" 
-                 }}>
-                Made By AI & Human
+            <div className="flex items-center justify-center">
+              <h2 className="text-4xl sm:text-5xl md:text-7xl font-playfair text-white italic py-2 px-0 font-extralight lg:text-8xl">
+                Made By AI
               </h2>
             </div>
           </div>
