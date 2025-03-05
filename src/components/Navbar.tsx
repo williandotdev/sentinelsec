@@ -22,6 +22,19 @@ const Navbar = () => {
     document.body.style.overflow = !isMenuOpen ? 'hidden' : '';
   };
 
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+    
+    // Close mobile menu if open
+    if (isMenuOpen) {
+      setIsMenuOpen(false);
+      document.body.style.overflow = '';
+    }
+  };
+
   return (
     <header
       className={cn(
@@ -35,6 +48,10 @@ const Navbar = () => {
         <a 
           href="#" 
           className="flex items-center space-x-2"
+          onClick={(e) => {
+            e.preventDefault();
+            scrollToTop();
+          }}
           aria-label="Pulse Robot"
         >
           <img 
@@ -46,7 +63,16 @@ const Navbar = () => {
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex space-x-8">
-          <a href="#" className="nav-link">Home</a>
+          <a 
+            href="#" 
+            className="nav-link"
+            onClick={(e) => {
+              e.preventDefault();
+              scrollToTop();
+            }}
+          >
+            Home
+          </a>
           <a href="#features" className="nav-link">About</a>
           <a href="#details" className="nav-link">Contact</a>
         </nav>
@@ -70,7 +96,9 @@ const Navbar = () => {
           <a 
             href="#" 
             className="text-xl font-medium py-3 px-6 w-full text-center rounded-lg hover:bg-gray-100" 
-            onClick={() => {
+            onClick={(e) => {
+              e.preventDefault();
+              scrollToTop();
               setIsMenuOpen(false);
               document.body.style.overflow = '';
             }}
