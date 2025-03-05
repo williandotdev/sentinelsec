@@ -15,15 +15,15 @@ const MadeByHumans = () => {
         }}>
             <div className="flex items-center text-white">
               <img src="/logo.svg" alt="Pulse Robot Logo" className="h-6 w-auto mr-3 invert" />
-              <span className="text-white text-xl font-medium">Pulse Robot</span>
+              <span className="text-white text-xl font-medium">
+            </span>
             </div>
             
             <div className="overflow-hidden" style={{
             marginBottom: "-20px"
           }}>
-              <h2 className="text-5xl md:text-7xl lg:text-8xl font-playfair font-bold text-white italic mt-auto">
-                Made by humans
-              </h2>
+              <h2 className="text-5xl md:text-7xl font-playfair text-white italic mt-auto py-0 px-[122px] mx-0 font-extralight lg:text-8xl">Made by AI with Human
+            </h2>
             </div>
           </div>
         </div>
