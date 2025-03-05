@@ -22,7 +22,7 @@ const MadeByHumans = () => {
             <div className="overflow-hidden max-h-[80px] md:max-h-[100px] lg:max-h-[120px]" style={{
             marginBottom: "-20px"
           }}>
-              <h2 className="text-5xl md:text-7xl font-playfair text-white italic mt-auto mx-0 font-extralight text-center py-[3px] lg:text-7xl px-0">Made by AI 
+              <h2 className="text-5xl md:text-7xl font-playfair text-white italic mt-auto mx-0 text-center py-[3px] px-0 font-extralight lg:text-7xl">Made by AI 
 with Human</h2>
             </div>
           </div>
