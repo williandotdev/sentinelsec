@@ -47,8 +47,8 @@ const Navbar = () => {
         {/* Desktop Navigation */}
         <nav className="hidden md:flex space-x-8">
           <a href="#" className="nav-link">Home</a>
-          <a href="#about" className="nav-link">About</a>
-          <a href="#contact" className="nav-link">Contact</a>
+          <a href="#features" className="nav-link">About</a>
+          <a href="#details" className="nav-link">Contact</a>
         </nav>
 
         {/* Mobile menu button - increased touch target */}
@@ -78,7 +78,7 @@ const Navbar = () => {
             Home
           </a>
           <a 
-            href="#about" 
+            href="#features" 
             className="text-xl font-medium py-3 px-6 w-full text-center rounded-lg hover:bg-gray-100" 
             onClick={() => {
               setIsMenuOpen(false);
@@ -88,7 +88,7 @@ const Navbar = () => {
             About
           </a>
           <a 
-            href="#contact" 
+            href="#details" 
             className="text-xl font-medium py-3 px-6 w-full text-center rounded-lg hover:bg-gray-100" 
             onClick={() => {
               setIsMenuOpen(false);
