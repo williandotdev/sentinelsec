@@ -1,3 +1,4 @@
+
 import React, { useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
@@ -11,7 +12,7 @@ import Testimonials from "@/components/Testimonials";
 import Newsletter from "@/components/Newsletter";
 import MadeByHumans from "@/components/MadeByHumans";
 import CTA from "@/components/CTA";
-import Footer from "@/components/Footer";
+// Removed Footer import
 
 const Index = () => {
   // Initialize intersection observer to detect when elements enter viewport
@@ -72,7 +73,7 @@ const Index = () => {
         <MadeByHumans />
         <CTA />
       </main>
-      <Footer />
+      {/* Removed Footer component */}
     </div>
   );
 };
