@@ -37,13 +37,7 @@ const HumanIntuitionSection = () => {
               ))}
             </ul>
           </div>
-          <div className="rounded-2xl overflow-hidden shadow-lg">
-            <img 
-              src="/lovable-uploads/dc13e94f-beeb-4671-8a22-0968498cdb4c.png" 
-              alt="Human-like intuition demonstration" 
-              className="w-full h-auto object-cover"
-            />
-          </div>
+          {/* Image container div has been removed */}
         </div>
       </div>
     </section>
