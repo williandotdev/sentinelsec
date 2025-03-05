@@ -1,4 +1,4 @@
-<lov-codelov-code>
+
 #root {
   max-width: 100%;
   margin: 0 auto;
@@ -114,16 +114,6 @@
   .section-subtitle {
     font-size: 1rem !important;
   }
-  
-  /* Ensure the bottom-cut effect works on mobile too */
-  #made-by-humans h2 {
-    width: 100%;
-    overflow: visible;
-  }
-  
-  #made-by-humans .overflow-hidden {
-    max-height: 70px !important;
-  }
 }
 
 /* Robot Showcase Section */
@@ -191,4 +181,3 @@
     transition: none !important;
   }
 }
-</lov-code>
