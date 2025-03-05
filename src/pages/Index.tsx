@@ -10,6 +10,7 @@ import Features from "@/components/Features";
 import Testimonials from "@/components/Testimonials";
 import Newsletter from "@/components/Newsletter";
 import MadeByHumans from "@/components/MadeByHumans";
+import Footer from "@/components/Footer";
 
 const Index = () => {
   // Initialize intersection observer to detect when elements enter viewport
@@ -71,6 +72,7 @@ const Index = () => {
         <Newsletter />
         <MadeByHumans />
       </main>
+      <Footer />
     </div>
   );
 };
