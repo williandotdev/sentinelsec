@@ -1,3 +1,4 @@
+<lov-codelov-code>
 #root {
   max-width: 100%;
   margin: 0 auto;
@@ -114,12 +115,14 @@
     font-size: 1rem !important;
   }
   
-  /* Ensure text is visible in MadeByHumans section */
+  /* Ensure the bottom-cut effect works on mobile too */
   #made-by-humans h2 {
     width: 100%;
     overflow: visible;
-    max-height: none;
-    margin-bottom: 0;
+  }
+  
+  #made-by-humans .overflow-hidden {
+    max-height: 70px !important;
   }
 }
 
@@ -188,3 +191,4 @@
     transition: none !important;
   }
 }
+</lov-code>

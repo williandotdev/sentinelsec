@@ -17,9 +17,11 @@ const MadeByHumans = () => {
             </div>
             
             <div className="flex items-center justify-center">
-              <h2 className="text-4xl sm:text-5xl md:text-7xl font-playfair text-white italic py-2 px-0 font-extralight lg:text-8xl">
-                Made By AI
-              </h2>
+              <div className="overflow-hidden" style={{ maxHeight: "85px" }}>
+                <h2 className="text-4xl sm:text-5xl md:text-7xl font-playfair text-white italic py-2 px-0 font-extralight lg:text-8xl">
+                  Made By AI
+                </h2>
+              </div>
             </div>
           </div>
         </div>
