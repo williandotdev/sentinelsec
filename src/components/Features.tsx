@@ -87,7 +87,7 @@ const Features = () => {
   }, []);
   
   return (
-    <section className="py-20 relative bg-gray-50" id="features" ref={sectionRef}>
+    <section className="py-20 pb-0 relative bg-gray-50" id="features" ref={sectionRef}>
       {/* Background gradient div has been removed */}
       
       <div className="section-container">
