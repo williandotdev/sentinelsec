@@ -13,7 +13,7 @@ const MadeByHumans = () => {
         </div>
         
         <div className="w-full rounded-3xl overflow-hidden relative mt-8">
-          <div className="bg-gradient-to-r from-dark-900 via-purple-900 to-pulse-500 p-12 md:p-16 lg:p-20 min-h-[300px] flex flex-col justify-between">
+          <div className="bg-no-repeat bg-cover bg-center p-12 md:p-16 lg:p-20 min-h-[300px] flex flex-col justify-between" style={{ backgroundImage: "url('/background-section3.png')" }}>
             <div className="flex items-center text-white mb-20">
               <img 
                 src="/logo.svg" 
