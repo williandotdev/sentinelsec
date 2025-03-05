@@ -31,8 +31,7 @@ const CTA = () => {
   
   return (
     <section className="py-12 sm:py-16 md:py-20 bg-white relative" id="get-access" ref={ctaRef}>
-      {/* Background gradient at the top */}
-      <div className="absolute top-0 right-0 w-full h-40 bg-gradient-to-b from-gray-50 to-transparent"></div>
+      {/* Background gradient at the top has been removed */}
       
       <div className="section-container relative z-10 opacity-0 px-4 sm:px-6">
         <div className="max-w-4xl mx-auto glass-card p-6 sm:p-8 md:p-10 lg:p-14 text-center overflow-hidden relative">
