@@ -1,4 +1,3 @@
-
 import React, { useEffect, useRef } from "react";
 import { cn } from "@/lib/utils";
 
@@ -89,8 +88,7 @@ const Features = () => {
   
   return (
     <section className="py-20 relative bg-gray-50" id="features" ref={sectionRef}>
-      {/* Background elements */}
-      <div className="absolute top-0 left-0 w-full h-24 bg-gradient-to-b from-white to-transparent"></div>
+      {/* Background gradient div has been removed */}
       
       <div className="section-container">
         <div className="text-center mb-16">
