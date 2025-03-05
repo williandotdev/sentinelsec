@@ -12,7 +12,7 @@ const MadeByHumans = () => {
         </div>
         
         <div className="w-full rounded-3xl overflow-hidden relative mt-8">
-          <div className="bg-no-repeat bg-cover bg-center p-12 md:p-16 lg:p-20 min-h-[300px] flex flex-col justify-between" style={{
+          <div className="bg-no-repeat bg-cover bg-center p-5 min-h-[350px] flex flex-col justify-between" style={{
           backgroundImage: "url('/background-section3.png')"
         }}>
             <div className="flex items-center text-white">
