@@ -20,7 +20,6 @@ const MadeByHumans = () => {
                 alt="Pulse Robot Logo" 
                 className="h-6 w-auto mr-3 invert" 
               />
-              <span className="text-xl font-medium">Pulse Robot</span>
             </div>
             
             <h2 className="text-5xl md:text-7xl lg:text-8xl font-display font-bold text-white italic">
