@@ -6,7 +6,7 @@ const Footer = () => {
     <footer className="w-full py-8 bg-white">
       <div className="section-container">
         <p className="text-center text-gray-600 text-sm">
-          This template takes cues from{" "}
+          This template takes inspired from{" "}
           <a 
             href="https://x.com/BrettFromDJ_" 
             target="_blank" 
