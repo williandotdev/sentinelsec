@@ -1,6 +1,4 @@
-
 import React from "react";
-
 const MadeByHumans = () => {
   return <section id="made-by-humans" className="w-full bg-white py-0">
       <div className="section-container opacity-0 animate-on-scroll pb-2">
@@ -17,14 +15,13 @@ const MadeByHumans = () => {
             </div>
             
             <div style={{
-              overflow: "hidden",
-              maxHeight: "80px", 
-              marginTop: "40px"
-            }}>
-              <h2 className="text-4xl sm:text-5xl md:text-7xl font-playfair text-white italic mt-0 mx-0 text-center py-[3px] px-0 font-extralight lg:text-8xl" 
-                 style={{
-                   marginBottom: "-30px" 
-                 }}>
+            overflow: "hidden",
+            maxHeight: "80px",
+            marginTop: "40px"
+          }}>
+              <h2 style={{
+              marginBottom: "-30px"
+            }} className="sm:text-5xl md:text-7xl font-playfair text-white italic mt-0 mx-0 text-center py-[3px] px-0 lg:text-8xl text-3xl font-extralight">
                 Made By AI & Human
               </h2>
             </div>
@@ -33,5 +30,4 @@ const MadeByHumans = () => {
       </div>
     </section>;
 };
-
 export default MadeByHumans;
