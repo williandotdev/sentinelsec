@@ -4,12 +4,7 @@ import React from "react";
 const MadeByHumans = () => {
   return <section id="made-by-humans" className="w-full bg-white py-0">
       <div className="section-container opacity-0 animate-on-scroll">
-        <div className="flex items-center gap-4 mb-6">
-          <div className="pulse-chip">
-            <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-pulse-500 text-white mr-2">06</span>
-            <span>Our Mission</span>
-          </div>
-        </div>
+        {/* Removed the pulse-chip button/element that was here */}
         
         <div className="w-full rounded-3xl overflow-hidden relative mt-8">
           <div className="bg-no-repeat bg-cover bg-center p-5 min-h-[350px] flex flex-col justify-between" style={{
