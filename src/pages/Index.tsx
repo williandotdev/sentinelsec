@@ -7,12 +7,9 @@ import SpecsSection from "@/components/SpecsSection";
 import DetailsSection from "@/components/DetailsSection";
 import ImageShowcaseSection from "@/components/ImageShowcaseSection";
 import Features from "@/components/Features";
-// Removed HumanIntuitionSection import
 import Testimonials from "@/components/Testimonials";
 import Newsletter from "@/components/Newsletter";
 import MadeByHumans from "@/components/MadeByHumans";
-// Removed CTA import
-// Removed Footer import
 
 const Index = () => {
   // Initialize intersection observer to detect when elements enter viewport
@@ -49,8 +46,11 @@ const Index = () => {
         const targetElement = document.getElementById(targetId);
         if (!targetElement) return;
         
+        // Increased offset to account for mobile nav
+        const offset = window.innerWidth < 768 ? 100 : 80;
+        
         window.scrollTo({
-          top: targetElement.offsetTop - 80, // Offset to account for fixed navbar
+          top: targetElement.offsetTop - offset,
           behavior: 'smooth'
         });
       });
@@ -60,20 +60,17 @@ const Index = () => {
   return (
     <div className="min-h-screen">
       <Navbar />
-      <main className="space-y-8">
+      <main className="space-y-4 sm:space-y-8"> {/* Reduced space on mobile */}
         <Hero />
         <HumanoidSection />
         <SpecsSection />
         <DetailsSection />
         <ImageShowcaseSection />
         <Features />
-        {/* Removed HumanIntuitionSection component */}
         <Testimonials />
         <Newsletter />
         <MadeByHumans />
-        {/* Removed CTA component */}
       </main>
-      {/* Removed Footer component */}
     </div>
   );
 };

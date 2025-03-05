@@ -1,3 +1,4 @@
+
 import React, { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 import { ArrowRight } from "lucide-react";
@@ -7,6 +8,19 @@ const Hero = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const imageRef = useRef<HTMLImageElement>(null);
   const [lottieData, setLottieData] = useState<any>(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    // Check if mobile on mount and when window resizes
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   useEffect(() => {
     fetch('/loop-header.lottie')
@@ -16,10 +30,11 @@ const Hero = () => {
   }, []);
 
   useEffect(() => {
+    // Skip effect on mobile
+    if (isMobile) return;
+    
     const handleMouseMove = (e: MouseEvent) => {
       if (!containerRef.current || !imageRef.current) return;
-      
-      if (window.innerWidth < 768) return;
       
       const {
         left,
@@ -50,9 +65,12 @@ const Hero = () => {
         container.removeEventListener("mouseleave", handleMouseLeave);
       }
     };
-  }, []);
+  }, [isMobile]);
   
   useEffect(() => {
+    // Skip parallax on mobile
+    if (isMobile) return;
+    
     const handleScroll = () => {
       const scrollY = window.scrollY;
       const elements = document.querySelectorAll('.parallax');
@@ -66,7 +84,7 @@ const Hero = () => {
     
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [isMobile]);
   
   return (
     <section 
@@ -75,16 +93,16 @@ const Hero = () => {
       style={{
         backgroundImage: 'url("/Header-background.webp")',
         backgroundPosition: 'center 30%', 
-        padding: '120px 20px 60px'
+        padding: isMobile ? '100px 12px 40px' : '120px 20px 60px'
       }}
     >
       <div className="absolute -top-[10%] -right-[5%] w-1/2 h-[70%] bg-pulse-gradient opacity-20 blur-3xl rounded-full"></div>
       
       <div className="container px-4 sm:px-6 lg:px-8" ref={containerRef}>
-        <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-center">
+        <div className="flex flex-col lg:flex-row gap-6 lg:gap-12 items-center">
           <div className="w-full lg:w-1/2">
             <div 
-              className="pulse-chip mb-4 sm:mb-6 opacity-0 animate-fade-in" 
+              className="pulse-chip mb-3 sm:mb-6 opacity-0 animate-fade-in" 
               style={{ animationDelay: "0.1s" }}
             >
               <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-pulse-500 text-white mr-2">01</span>
@@ -100,7 +118,7 @@ const Hero = () => {
             
             <p 
               style={{ animationDelay: "0.5s" }} 
-              className="section-subtitle mt-4 sm:mt-6 mb-6 sm:mb-8 leading-relaxed opacity-0 animate-fade-in text-gray-950 font-normal text-base sm:text-lg text-left"
+              className="section-subtitle mt-3 sm:mt-6 mb-4 sm:mb-8 leading-relaxed opacity-0 animate-fade-in text-gray-950 font-normal text-base sm:text-lg text-left"
             >
               The humanoid companion that learns and adapts alongside you.
             </p>
@@ -120,7 +138,7 @@ const Hero = () => {
                   cursor: 'pointer',
                   fontSize: '14px',
                   lineHeight: '20px',
-                  padding: '16px 32px',
+                  padding: '16px 24px', // Slightly reduced padding for mobile
                   border: '1px solid white',
                 }}
               >
@@ -130,7 +148,7 @@ const Hero = () => {
             </div>
           </div>
           
-          <div className="w-full lg:w-1/2 relative mt-8 lg:mt-0">
+          <div className="w-full lg:w-1/2 relative mt-6 lg:mt-0">
             {lottieData ? (
               <div className="relative z-10 animate-fade-in" style={{ animationDelay: "0.9s" }}>
                 <LottieAnimation 
@@ -142,8 +160,8 @@ const Hero = () => {
               </div>
             ) : (
               <>
-              <div className="absolute inset-0 bg-dark-900 rounded-3xl -z-10 shadow-xl"></div>
-              <div className="relative transition-all duration-500 ease-out overflow-hidden rounded-3xl shadow-2xl">
+              <div className="absolute inset-0 bg-dark-900 rounded-2xl sm:rounded-3xl -z-10 shadow-xl"></div>
+              <div className="relative transition-all duration-500 ease-out overflow-hidden rounded-2xl sm:rounded-3xl shadow-2xl">
                 <img 
                   ref={imageRef} 
                   src="/lovable-uploads/5663820f-6c97-4492-9210-9eaa1a8dc415.png" 

@@ -25,9 +25,9 @@ const Navbar = () => {
   return (
     <header
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 py-3 sm:py-4 transition-all duration-300",
+        "fixed top-0 left-0 right-0 z-50 py-2 sm:py-3 md:py-4 transition-all duration-300",
         isScrolled 
-          ? "bg-white/60 backdrop-blur-md shadow-sm" 
+          ? "bg-white/80 backdrop-blur-md shadow-sm" 
           : "bg-transparent"
       )}
     >
@@ -51,25 +51,25 @@ const Navbar = () => {
           <a href="#contact" className="nav-link">Contact</a>
         </nav>
 
-        {/* Mobile menu button */}
+        {/* Mobile menu button - increased touch target */}
         <button 
-          className="md:hidden text-gray-700 p-2 focus:outline-none" 
+          className="md:hidden text-gray-700 p-3 focus:outline-none" 
           onClick={toggleMenu}
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
         >
-          {isMenuOpen ? <X size={22} /> : <Menu size={22} />}
+          {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
 
-      {/* Mobile Navigation */}
+      {/* Mobile Navigation - improved for better touch experience */}
       <div className={cn(
         "fixed inset-0 z-40 bg-white flex flex-col pt-16 px-6 md:hidden transition-all duration-300 ease-in-out",
         isMenuOpen ? "opacity-100 translate-x-0" : "opacity-0 translate-x-full pointer-events-none"
       )}>
-        <nav className="flex flex-col space-y-6 items-center mt-4">
+        <nav className="flex flex-col space-y-8 items-center mt-8">
           <a 
             href="#" 
-            className="text-xl font-medium" 
+            className="text-xl font-medium py-3 px-6 w-full text-center rounded-lg hover:bg-gray-100" 
             onClick={() => {
               setIsMenuOpen(false);
               document.body.style.overflow = '';
@@ -79,7 +79,7 @@ const Navbar = () => {
           </a>
           <a 
             href="#about" 
-            className="text-xl font-medium" 
+            className="text-xl font-medium py-3 px-6 w-full text-center rounded-lg hover:bg-gray-100" 
             onClick={() => {
               setIsMenuOpen(false);
               document.body.style.overflow = '';
@@ -89,7 +89,7 @@ const Navbar = () => {
           </a>
           <a 
             href="#contact" 
-            className="text-xl font-medium" 
+            className="text-xl font-medium py-3 px-6 w-full text-center rounded-lg hover:bg-gray-100" 
             onClick={() => {
               setIsMenuOpen(false);
               document.body.style.overflow = '';
