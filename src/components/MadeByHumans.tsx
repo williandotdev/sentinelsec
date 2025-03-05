@@ -27,7 +27,7 @@ const MadeByHumans = () => {
             </div>
             
             <div className="overflow-hidden" style={{ marginBottom: "-20px" }}>
-              <h2 className="text-5xl md:text-7xl lg:text-8xl font-display font-bold text-white italic mt-auto">
+              <h2 className="text-5xl md:text-7xl lg:text-8xl font-playfair font-bold text-white italic mt-auto">
                 Made by humans
               </h2>
             </div>
