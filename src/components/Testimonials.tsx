@@ -44,7 +44,7 @@ const TestimonialCard = ({ content, author, role, backgroundImage = "/background
   return (
     <div className="bg-cover bg-center rounded-lg p-8 h-full flex flex-col justify-between text-white transform transition-transform duration-300 hover:-translate-y-2 relative overflow-hidden" style={{ backgroundImage: `url('${backgroundImage}')` }}>
       {/* White square box in the top right corner - now solid white */}
-      <div className="absolute top-0 right-0 w-16 h-16 bg-white"></div>
+      <div className="absolute top-0 right-0 w-24 h-24 bg-white"></div>
       
       <p className="text-xl mb-8 font-medium leading-relaxed">{`"${content}"`}</p>
       <div>
