@@ -3,7 +3,7 @@ import React from "react";
 
 const SpecsSection = () => {
   return (
-    <section className="w-full py-16 bg-white" id="specifications">
+    <section className="w-full py-10 bg-white" id="specifications"> {/* Reduced from py-16 */}
       <div className="container px-6 lg:px-8 mx-auto">
         {/* Header with badge and line */}
         <div className="flex items-center gap-4 mb-16">

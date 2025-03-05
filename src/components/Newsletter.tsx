@@ -31,7 +31,7 @@ const Newsletter = () => {
   };
 
   return (
-    <section className="py-20 bg-white" id="newsletter">
+    <section className="py-12 bg-white" id="newsletter"> {/* Reduced from py-20 */}
       <div className="section-container opacity-0 animate-on-scroll">
         <div className="max-w-6xl mx-auto">
           <div className="flex items-center gap-4 mb-6">

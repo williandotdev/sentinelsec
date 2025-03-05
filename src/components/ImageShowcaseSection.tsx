@@ -3,7 +3,7 @@ import React from "react";
 
 const ImageShowcaseSection = () => {
   return (
-    <section className="w-full py-20 bg-gray-50" id="showcase">
+    <section className="w-full py-12 bg-gray-50" id="showcase"> {/* Reduced from py-20 */}
       <div className="container px-6 lg:px-8 mx-auto">
         <div className="max-w-3xl mx-auto text-center mb-12 animate-on-scroll">
           <h2 className="text-4xl font-display font-bold tracking-tight text-gray-900 mb-4">
