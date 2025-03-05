@@ -28,7 +28,7 @@ const MadeByHumans = () => {
             </div>
             
             {/* White box at the bottom */}
-            <div className="w-full bg-white h-10 mt-4 rounded-t-lg"></div>
+            <div className="w-full bg-white h-10 rounded-t-lg"></div>
           </div>
         </div>
       </div>
