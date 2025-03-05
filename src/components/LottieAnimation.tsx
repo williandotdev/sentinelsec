@@ -7,7 +7,6 @@ interface LottieAnimationProps {
   className?: string;
   loop?: boolean;
   autoplay?: boolean;
-  speed?: number;
 }
 
 const LottieAnimation = ({
@@ -15,7 +14,6 @@ const LottieAnimation = ({
   className = "",
   loop = true,
   autoplay = true,
-  speed = 1,
 }: LottieAnimationProps) => {
   return (
     <div className={className}>
@@ -23,7 +21,6 @@ const LottieAnimation = ({
         animationData={animationPath}
         loop={loop}
         autoplay={autoplay}
-        speed={speed}
         style={{ width: "100%", height: "100%" }}
         rendererSettings={{
           preserveAspectRatio: "xMidYMid slice",
