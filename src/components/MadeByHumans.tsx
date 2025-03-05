@@ -1,3 +1,4 @@
+
 import React from "react";
 const MadeByHumans = () => {
   return <section id="made-by-humans" className="w-full bg-white py-0">
@@ -22,7 +23,7 @@ const MadeByHumans = () => {
             <div className="overflow-hidden" style={{
             marginBottom: "-20px"
           }}>
-              <h2 className="text-5xl md:text-7xl font-playfair text-white italic mt-auto py-0 px-[122px] mx-0 font-extralight lg:text-8xl">Made by AI with Human
+              <h2 className="text-5xl md:text-7xl font-playfair text-white italic mt-auto py-0 px-[122px] mx-0 font-extralight lg:text-8xl text-center">Made by AI with Human
             </h2>
             </div>
           </div>
