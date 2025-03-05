@@ -1,6 +1,5 @@
 
 import React from "react";
-import { Asterisk } from "lucide-react";
 
 const MadeByHumans = () => {
   return (
@@ -16,7 +15,11 @@ const MadeByHumans = () => {
         <div className="w-full rounded-3xl overflow-hidden relative mt-8">
           <div className="bg-gradient-to-r from-dark-900 via-purple-900 to-pulse-500 p-12 md:p-16 lg:p-20 min-h-[300px] flex flex-col justify-between">
             <div className="flex items-center text-white mb-20">
-              <Asterisk className="w-6 h-6 mr-3" />
+              <img 
+                src="/logo.svg" 
+                alt="Pulse Robot Logo" 
+                className="h-6 w-auto mr-3 invert" 
+              />
               <span className="text-xl font-medium">Pulse Robot</span>
             </div>
             
