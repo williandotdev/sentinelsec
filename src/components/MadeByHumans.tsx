@@ -1,3 +1,4 @@
+
 import React from "react";
 const MadeByHumans = () => {
   return <section id="made-by-humans" className="w-full bg-white py-0">
@@ -25,6 +26,9 @@ const MadeByHumans = () => {
                 Made By AI & Human
               </h2>
             </div>
+            
+            {/* White box at the bottom */}
+            <div className="w-full bg-white h-10 mt-4 rounded-t-lg"></div>
           </div>
         </div>
       </div>
