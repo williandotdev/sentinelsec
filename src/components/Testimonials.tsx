@@ -37,7 +37,10 @@ const testimonials: TestimonialProps[] = [
 
 const TestimonialCard = ({ content, author, role, gradient }: TestimonialProps) => {
   return (
-    <div className={`bg-gradient-to-br ${gradient} rounded-lg p-8 h-full flex flex-col justify-between text-white shadow-xl transform transition-transform duration-300 hover:-translate-y-2`}>
+    <div className={`bg-gradient-to-br ${gradient} rounded-lg p-8 h-full flex flex-col justify-between text-white shadow-xl transform transition-transform duration-300 hover:-translate-y-2 relative overflow-hidden`}>
+      {/* White square box in the top right corner */}
+      <div className="absolute top-0 right-0 w-16 h-16 bg-white/20 backdrop-blur-sm"></div>
+      
       <p className="text-xl mb-8 font-medium leading-relaxed">{`"${content}"`}</p>
       <div>
         <h4 className="font-semibold text-xl">{author}</h4>
