@@ -138,7 +138,6 @@ const Hero = () => {
                   className="w-full h-auto max-w-lg mx-auto"
                   loop={true}
                   autoplay={true}
-                  speed={0.8}
                 />
               </div>
             ) : (
