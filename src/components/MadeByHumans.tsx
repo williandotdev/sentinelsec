@@ -1,5 +1,6 @@
 
 import React from "react";
+
 const MadeByHumans = () => {
   return <section id="made-by-humans" className="w-full bg-white py-0">
       <div className="section-container opacity-0 animate-on-scroll">
@@ -20,7 +21,7 @@ const MadeByHumans = () => {
             </span>
             </div>
             
-            <div className="overflow-hidden" style={{
+            <div className="overflow-hidden max-h-[80px] md:max-h-[100px] lg:max-h-[120px]" style={{
             marginBottom: "-20px"
           }}>
               <h2 className="text-5xl md:text-7xl font-playfair text-white italic mt-auto py-0 px-[122px] mx-0 font-extralight lg:text-8xl text-center">Made by AI with Human
@@ -31,4 +32,5 @@ const MadeByHumans = () => {
       </div>
     </section>;
 };
+
 export default MadeByHumans;
