@@ -1,4 +1,5 @@
 import React, { useRef } from "react";
+
 interface TestimonialProps {
   content: string;
   author: string;
@@ -6,6 +7,7 @@ interface TestimonialProps {
   gradient: string;
   backgroundImage?: string;
 }
+
 const testimonials: TestimonialProps[] = [{
   content: "Atlas transformed our production line, handling repetitive tasks while our team focuses on innovation. 30% increase in output within three months.",
   author: "Sarah Chen",
@@ -31,6 +33,7 @@ const testimonials: TestimonialProps[] = [{
   gradient: "from-orange-600 via-red-500 to-purple-600",
   backgroundImage: "/background-section1.png"
 }];
+
 const TestimonialCard = ({
   content,
   author,
@@ -51,8 +54,10 @@ const TestimonialCard = ({
       </div>
     </div>;
 };
+
 const Testimonials = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
+
   return <section className="py-20 bg-white relative" id="testimonials" ref={sectionRef}>
       <div className="section-container opacity-0 animate-on-scroll">
         <div className="flex items-center gap-4 mb-6">
@@ -62,7 +67,7 @@ const Testimonials = () => {
           </div>
         </div>
         
-        <h2 className="text-5xl font-bold mb-12 text-left">What others say</h2>
+        <h2 className="text-5xl font-display font-bold mb-12 text-left">What others say</h2>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {testimonials.map((testimonial, index) => <TestimonialCard key={index} content={testimonial.content} author={testimonial.author} role={testimonial.role} gradient={testimonial.gradient} backgroundImage={testimonial.backgroundImage} />)}
@@ -70,4 +75,5 @@ const Testimonials = () => {
       </div>
     </section>;
 };
+
 export default Testimonials;
