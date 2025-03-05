@@ -1,3 +1,4 @@
+
 import React from "react";
 const MadeByHumans = () => {
   return <section id="made-by-humans" className="w-full bg-white py-0">
@@ -21,7 +22,7 @@ const MadeByHumans = () => {
           }}>
               <h2 style={{
               marginBottom: "-30px"
-            }} className="sm:text-5xl font-playfair text-white italic mt-0 mx-0 text-center font-thin text-6xl md:text-7xl py-0 px-0 lg:text-7xl">
+            }} className="sm:text-5xl font-playfair text-white italic mt-0 mx-0 text-center font-thin text-6xl md:text-7xl py-0 pb-1 px-0 lg:text-7xl">
                 Made By AI & Human
               </h2>
             </div>
