@@ -21,7 +21,7 @@ const MadeByHumans = () => {
           }}>
               <h2 style={{
               marginBottom: "-30px"
-            }} className="sm:text-5xl font-playfair text-white italic mt-0 mx-0 text-center py-[3px] px-0 lg:text-8xl font-thin text-6xl md:text-7xl">
+            }} className="sm:text-5xl font-playfair text-white italic mt-0 mx-0 text-center font-thin text-6xl md:text-7xl py-0 px-0 lg:text-7xl">
                 Made By AI & Human
               </h2>
             </div>
