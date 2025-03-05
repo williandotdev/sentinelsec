@@ -13,32 +13,32 @@ const testimonials: TestimonialProps[] = [
     content: "Atlas transformed our production line, handling repetitive tasks while our team focuses on innovation. 30% increase in output within three months.",
     author: "Sarah Chen",
     role: "VP of Operations, Axion Manufacturing",
-    gradient: "bg-gradient-to-br from-orange-500 via-blue-400 to-purple-800"
+    gradient: "from-blue-700 via-indigo-800 to-purple-900"
   },
   {
     content: "Implementing Atlas in our fulfillment centers reduced workplace injuries by 40% while improving order accuracy. The learning capabilities are remarkable.",
-    author: "Sarah Chen",
-    role: "VP of Operations, Axion Manufacturing",
-    gradient: "bg-gradient-to-br from-indigo-900 via-purple-800 to-orange-500"
+    author: "Michael Rodriguez",
+    role: "Director of Logistics, GlobalShip",
+    gradient: "from-indigo-900 via-purple-800 to-orange-500"
   },
   {
     content: "Atlas adapted to our lab protocols faster than any system we've used. It's like having another researcher who never gets tired and maintains perfect precision.",
-    author: "Sarah Chen",
-    role: "VP of Operations, Axion Manufacturing",
-    gradient: "bg-gradient-to-br from-blue-700 via-indigo-800 to-purple-900"
+    author: "Dr. Amara Patel",
+    role: "Lead Scientist, BioAdvance Research",
+    gradient: "from-purple-800 via-pink-700 to-red-500"
   },
   {
     content: "As a mid-size business, we never thought advanced robotics would be accessible to us. Atlas changed that equation entirely with its versatility and ease of deployment.",
-    author: "Sarah Chen",
-    role: "VP of Operations, Axion Manufacturing",
-    gradient: "bg-gradient-to-br from-indigo-700 via-orange-600 to-yellow-500"
+    author: "Jason Lee",
+    role: "CEO, Innovative Solutions Inc.",
+    gradient: "from-orange-600 via-red-500 to-purple-600"
   }
 ];
 
 const TestimonialCard = ({ content, author, role, gradient }: TestimonialProps) => {
   return (
-    <div className={`${gradient} rounded-lg p-8 h-full flex flex-col justify-between text-white`}>
-      <p className="text-xl mb-8 font-medium">{`"${content}"`}</p>
+    <div className={`bg-gradient-to-br ${gradient} rounded-lg p-8 h-full flex flex-col justify-between text-white shadow-xl transform transition-transform duration-300 hover:-translate-y-2`}>
+      <p className="text-xl mb-8 font-medium leading-relaxed">{`"${content}"`}</p>
       <div>
         <h4 className="font-semibold text-xl">{author}</h4>
         <p className="text-white/80">{role}</p>
@@ -64,7 +64,7 @@ const Testimonials = () => {
         
         <h2 className="text-5xl font-bold mb-12 text-left">What others say</h2>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {testimonials.map((testimonial, index) => (
             <TestimonialCard
               key={index}
