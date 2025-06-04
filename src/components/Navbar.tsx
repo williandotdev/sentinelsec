@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Shield } from "lucide-react";
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -28,16 +28,16 @@ const Navbar = () => {
     }
   };
   return <header className={cn("fixed top-0 left-0 right-0 z-50 py-2 sm:py-3 md:py-4 transition-all duration-300", isScrolled ? "bg-slate-900/95 backdrop-blur-md shadow-lg border-b border-slate-800" : "bg-transparent")}>
-      <div className="container flex items-center justify-between sm:px-6 lg:px-8 px-[34px]">
+      <div className="container flex items-center justify-between px-4 sm:px-6 lg:px-8">
         <a href="#" className="flex items-center space-x-3" onClick={e => {
         e.preventDefault();
         scrollToTop();
       }} aria-label="Segurança de TI">
-          <div className="w-30 h-50 flex items-center justify-center">
-            <img alt="Logo" className="w-8 h-8 object-contain" src="/lovable-uploads/b1c11d31-0b1d-47f1-8c70-aeab04e1753c.png" />
+          <div className="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center">
+            <Shield className="w-6 h-6 text-white" />
           </div>
           <div>
-            
+            <span className="text-white font-bold text-lg">Rcardo Arrais</span>
             <div className="text-blue-400 text-xs">
           </div>
           </div>
