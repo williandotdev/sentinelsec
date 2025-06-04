@@ -1,80 +1,85 @@
 
-import React, { useRef } from "react";
+import React from "react";
+import { Star, Quote } from "lucide-react";
 
-interface TestimonialProps {
-  content: string;
-  author: string;
-  role: string;
-  gradient: string;
-  backgroundImage?: string;
-}
-
-const testimonials: TestimonialProps[] = [{
-  content: "Atlas transformed our production line, handling repetitive tasks while our team focuses on innovation. 30% increase in output within three months.",
-  author: "Sarah Chen",
-  role: "VP of Operations, Axion Manufacturing",
-  gradient: "from-blue-700 via-indigo-800 to-purple-900",
-  backgroundImage: "/background-section1.png"
-}, {
-  content: "Implementing Atlas in our fulfillment centers reduced workplace injuries by 40% while improving order accuracy. The learning capabilities are remarkable.",
-  author: "Michael Rodriguez",
-  role: "Director of Logistics, GlobalShip",
-  gradient: "from-indigo-900 via-purple-800 to-orange-500",
-  backgroundImage: "/background-section2.png"
-}, {
-  content: "Atlas adapted to our lab protocols faster than any system we've used. It's like having another researcher who never gets tired and maintains perfect precision.",
-  author: "Dr. Amara Patel",
-  role: "Lead Scientist, BioAdvance Research",
-  gradient: "from-purple-800 via-pink-700 to-red-500",
-  backgroundImage: "/background-section3.png"
-}, {
-  content: "As a mid-size business, we never thought advanced robotics would be accessible to us. Atlas changed that equation entirely with its versatility and ease of deployment.",
-  author: "Jason Lee",
-  role: "CEO, Innovative Solutions Inc.",
-  gradient: "from-orange-600 via-red-500 to-purple-600",
-  backgroundImage: "/background-section1.png"
-}];
-
-const TestimonialCard = ({
-  content,
-  author,
-  role,
-  backgroundImage = "/background-section1.png"
-}: TestimonialProps) => {
-  return <div className="bg-cover bg-center rounded-lg p-8 h-full flex flex-col justify-between text-white transform transition-transform duration-300 hover:-translate-y-2 relative overflow-hidden" style={{
-    backgroundImage: `url('${backgroundImage}')`
-  }}>
-      <div className="absolute top-0 right-0 w-24 h-24 bg-white z-10"></div>
-      
-      <div className="relative z-0">
-        <p className="text-xl mb-8 font-medium leading-relaxed pr-20">{`"${content}"`}</p>
-        <div>
-          <h4 className="font-semibold text-xl">{author}</h4>
-          <p className="text-white/80">{role}</p>
-        </div>
-      </div>
-    </div>;
-};
+const testimonials = [
+  {
+    content: "A consultoria de segurança cloud da equipe do Ricardo transformou nossa infraestrutura AWS. Reduzimos custos em 40% enquanto aumentamos significativamente nossa postura de segurança.",
+    author: "Carlos Santos",
+    role: "CTO, TechCorp Brasil",
+    company: "Empresa de Software",
+    rating: 5
+  },
+  {
+    content: "O pentest realizado revelou vulnerabilidades críticas que não sabíamos que existiam. O relatório técnico foi excepcional e as recomendações práticas foram fundamentais para nossa conformidade.",
+    author: "Ana Silva",
+    role: "CISO, FinanceSecure",
+    company: "Setor Financeiro", 
+    rating: 5
+  },
+  {
+    content: "Implementação impecável do Active Directory e soluções de segurança on-premise. Equipe técnica altamente qualificada e comunicação clara durante todo o projeto.",
+    author: "Roberto Lima",
+    role: "Gerente de TI, Indústria XYZ",
+    company: "Setor Industrial",
+    rating: 5
+  },
+  {
+    content: "O diagnóstico de vulnerabilidades web e o selo de segurança nos deram a confiança necessária para expandir nosso e-commerce. Monitoramento contínuo excepcional.",
+    author: "Mariana Costa",
+    role: "CEO, E-commerce Plus",
+    company: "Varejo Online",
+    rating: 5
+  }
+];
 
 const Testimonials = () => {
-  const sectionRef = useRef<HTMLDivElement>(null);
-
-  return <section className="py-12 bg-white relative" id="testimonials" ref={sectionRef}> {/* Reduced from py-20 */}
-      <div className="section-container opacity-0 animate-on-scroll">
-        <div className="flex items-center gap-4 mb-6">
-          <div className="pulse-chip">
-            <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-pulse-500 text-white mr-2">04</span>
-            <span>Testimonials</span>
+  return (
+    <section className="py-20 bg-slate-900" id="testimonials">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-16">
+          <div className="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium bg-blue-500/20 text-blue-300 border border-blue-400/30 mb-6">
+            <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-blue-600 text-white mr-2 text-xs">04</span>
+            <span>Depoimentos</span>
           </div>
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+            O que nossos <span className="text-blue-400">clientes dizem</span>
+          </h2>
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+            Resultados comprovados em segurança e infraestrutura de TI para empresas de diversos setores.
+          </p>
         </div>
-        
-        <h2 className="text-5xl font-display font-bold mb-12 text-left">What others say</h2>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {testimonials.map((testimonial, index) => <TestimonialCard key={index} content={testimonial.content} author={testimonial.author} role={testimonial.role} gradient={testimonial.gradient} backgroundImage={testimonial.backgroundImage} />)}
+          {testimonials.map((testimonial, index) => (
+            <div 
+              key={index} 
+              className="bg-slate-800 rounded-xl p-8 border border-slate-700 hover:border-blue-500/50 transition-all duration-300"
+            >
+              <div className="flex items-center mb-6">
+                <Quote className="w-8 h-8 text-blue-400 mr-4" />
+                <div className="flex">
+                  {[...Array(testimonial.rating)].map((_, starIndex) => (
+                    <Star key={starIndex} className="w-5 h-5 text-yellow-400 fill-current" />
+                  ))}
+                </div>
+              </div>
+              
+              <p className="text-gray-300 text-lg leading-relaxed mb-6">
+                "{testimonial.content}"
+              </p>
+              
+              <div className="border-t border-slate-700 pt-6">
+                <h4 className="font-semibold text-white text-lg">{testimonial.author}</h4>
+                <p className="text-blue-400 font-medium">{testimonial.role}</p>
+                <p className="text-gray-400 text-sm">{testimonial.company}</p>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
-    </section>;
+    </section>
+  );
 };
 
 export default Testimonials;
