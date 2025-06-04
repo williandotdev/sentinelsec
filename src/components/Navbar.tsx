@@ -28,7 +28,7 @@ const Navbar = () => {
     }
   };
   return <header className={cn("fixed top-0 left-0 right-0 z-50 py-2 sm:py-3 md:py-4 transition-all duration-300", isScrolled ? "bg-slate-900/95 backdrop-blur-md shadow-lg border-b border-slate-800" : "bg-transparent")}>
-      <div className="container flex items-center justify-between sm:px-6 lg:px-8 px-[34px]">
+      <div className="container flex items-center justify-between sm:px-8 lg:px-12 px">
         <a href="#" className="flex items-center space-x-3" onClick={e => {
         e.preventDefault();
         scrollToTop();
