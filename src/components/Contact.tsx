@@ -1,7 +1,5 @@
-
 import React, { useState } from "react";
 import { Mail, Phone, MapPin, Send, FileSearch } from "lucide-react";
-
 const Contact = () => {
   const [formData, setFormData] = useState({
     name: '',
@@ -10,26 +8,22 @@ const Contact = () => {
     interest: '',
     message: ''
   });
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log('Form submitted:', formData);
     // Aqui você pode integrar com um serviço de e-mail ou CRM
   };
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
     });
   };
-
-  return (
-    <section className="py-20 bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800" id="contact">
+  return <section className="py-20 bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800" id="contact">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <div className="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium bg-blue-500/20 text-blue-300 border border-blue-400/30 mb-6">
-            <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-blue-600 text-white mr-2 text-xs">05</span>
+            <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-blue-600 text-white mr-2 text-xs">04</span>
             <span>Contato</span>
           </div>
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
@@ -50,62 +44,28 @@ const Contact = () => {
                   <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">
                     Nome completo *
                   </label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    required
-                    value={formData.name}
-                    onChange={handleChange}
-                    className="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
-                    placeholder="Seu nome"
-                  />
+                  <input type="text" id="name" name="name" required value={formData.name} onChange={handleChange} className="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500" placeholder="Seu nome" />
                 </div>
                 
                 <div>
                   <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">
                     E-mail corporativo *
                   </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    required
-                    value={formData.email}
-                    onChange={handleChange}
-                    className="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
-                    placeholder="seu@email.com"
-                  />
+                  <input type="email" id="email" name="email" required value={formData.email} onChange={handleChange} className="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500" placeholder="seu@email.com" />
                 </div>
                 
                 <div>
                   <label htmlFor="company" className="block text-sm font-medium text-gray-300 mb-2">
                     Empresa *
                   </label>
-                  <input
-                    type="text"
-                    id="company"
-                    name="company"
-                    required
-                    value={formData.company}
-                    onChange={handleChange}
-                    className="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
-                    placeholder="Nome da empresa"
-                  />
+                  <input type="text" id="company" name="company" required value={formData.company} onChange={handleChange} className="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500" placeholder="Nome da empresa" />
                 </div>
                 
                 <div>
                   <label htmlFor="interest" className="block text-sm font-medium text-gray-300 mb-2">
                     Principal interesse *
                   </label>
-                  <select
-                    id="interest"
-                    name="interest"
-                    required
-                    value={formData.interest}
-                    onChange={handleChange}
-                    className="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
-                  >
+                  <select id="interest" name="interest" required value={formData.interest} onChange={handleChange} className="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500">
                     <option value="">Selecione um serviço</option>
                     <option value="scan-vulnerabilidade">Scan de Vulnerabilidade Web</option>
                     <option value="pentest">Pentest Profissional</option>
@@ -120,21 +80,10 @@ const Contact = () => {
                   <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-2">
                     Mensagem adicional
                   </label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    rows={4}
-                    value={formData.message}
-                    onChange={handleChange}
-                    className="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
-                    placeholder="Descreva brevemente suas necessidades ou ambiente atual"
-                  ></textarea>
+                  <textarea id="message" name="message" rows={4} value={formData.message} onChange={handleChange} className="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500" placeholder="Descreva brevemente suas necessidades ou ambiente atual"></textarea>
                 </div>
                 
-                <button
-                  type="submit"
-                  className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-4 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 flex items-center justify-center"
-                >
+                <button type="submit" className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-4 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 flex items-center justify-center">
                   <Send className="mr-2 w-5 h-5" />
                   Solicitar Diagnóstico Gratuito
                 </button>
@@ -203,8 +152,6 @@ const Contact = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default Contact;

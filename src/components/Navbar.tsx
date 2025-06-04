@@ -37,7 +37,7 @@ const Navbar = () => {
             <Shield className="w-6 h-6 text-white" />
           </div>
           <div>
-            <span className="text-white font-bold text-lg">Rcardo Arrais</span>
+            
             <div className="text-blue-400 text-xs">
           </div>
           </div>
