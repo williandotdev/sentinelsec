@@ -51,7 +51,7 @@ const Navbar = () => {
             Início
           </a>
           <a href="#services" className="text-white hover:text-blue-400 py-2 transition-colors duration-300">Serviços</a>
-          <a href="#about" className="text-white hover:text-blue-400 py-2 transition-colors duration-300">Sobre</a>
+          
           <a href="#testimonials" className="text-white hover:text-blue-400 py-2 transition-colors duration-300">Depoimentos</a>
           <a href="#contact" className="text-white hover:text-blue-400 py-2 transition-colors duration-300">Contato</a>
         </nav>
