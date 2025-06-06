@@ -34,7 +34,7 @@ const Navbar = () => {
         scrollToTop();
       }} aria-label="Segurança de TI">
           <div className="w-60 h-20 rounded-lg flex items-center justify-center" >
-            <img src="./../../public/logo.svg" alt="Logo Sentinel Sec" />
+            <img src="/logo.svg" alt="Logo Sentinel Sec" />
           </div>
           <div>
             <div className="text-blue-400 text-xs">
