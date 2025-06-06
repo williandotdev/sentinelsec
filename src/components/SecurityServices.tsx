@@ -23,7 +23,7 @@ const services = [
   },
   {
     icon: DollarSign,
-    title: "FinOps - Gestão Cloud",
+    title: "FinOps",
     description: "Diagnóstico e otimização de custos na nuvem com estratégias de governança para reduzir gastos sem comprometer performance.",
     features: ["Análise de custos", "Otimização de recursos", "Governança financeira", "Relatórios mensais"]
   },
@@ -34,10 +34,10 @@ const services = [
     features: ["Firewall corporativo", "Active Directory", "Servidor Samba", "Integração de sistemas"]
   },
   {
-    icon: Lock,
-    title: "Compliance e Auditoria",
-    description: "Avaliação completa de conformidade com normas de segurança e implementação de políticas corporativas.",
-    features: ["ISO 27001", "LGPD", "SOX", "Políticas de segurança"]
+    icon: Cloud,
+    title: "Gestão Cloud",
+    description: "Gerenciamento completo de ambientes em nuvem (AWS, Azure e GCP), com foco em desempenho, escalabilidade, custos otimizados e operação contínua.",
+    features: ["AWS, Azure, GCP", "Monitoramento e automação", "Otimização de custos", "Alta disponibilidade e performance"]
   }
 ];
 

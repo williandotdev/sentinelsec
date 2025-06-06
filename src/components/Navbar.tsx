@@ -33,11 +33,10 @@ const Navbar = () => {
         e.preventDefault();
         scrollToTop();
       }} aria-label="Segurança de TI">
-          <div className="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center">
-            <Shield className="w-6 h-6 text-white" />
+          <div className="w-60 h-20 rounded-lg flex items-center justify-center" >
+            <img src="./../../public/logo.svg" alt="Logo Sentinel Sec" />
           </div>
           <div>
-            
             <div className="text-blue-400 text-xs">
           </div>
           </div>

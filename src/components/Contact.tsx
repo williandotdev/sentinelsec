@@ -1,24 +1,45 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Mail, Phone, MapPin, Send, FileSearch } from "lucide-react";
+
+
+
 const Contact = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     company: '',
     interest: '',
-    message: ''
+    message: '',
+    phone:''
   });
+  const formRef = useRef<HTMLFormElement>(null);
   const handleSubmit = (e: React.FormEvent) => {
+    emailjs.init("VyvsEyTjCM__MeHTH");
     e.preventDefault();
     console.log('Form submitted:', formData);
-    // Aqui você pode integrar com um serviço de e-mail ou CRM
+    if (formRef.current) {
+      emailjs.sendForm( "service_52obc3n" , "template_ff5rwfo", formRef.current)
+        .then(() => alert("Mensagem enviada com sucesso!"))
+        .catch((erro) => {
+          console.error("Erro ao enviar:", erro);
+          alert("Erro ao enviar: " + (erro.text || erro.message || JSON.stringify(erro)));
+        });
+    } else {
+      alert("Erro: formulário não encontrado.");
+    }
   };
+  
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
     });
   };
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
+
+const handleCaptchaChange = (token: string | null) => {
+  setCaptchaToken(token);
+};
   return <section className="py-20 bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800" id="contact">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
@@ -39,7 +60,7 @@ const Contact = () => {
             <div className="bg-slate-800/50 rounded-xl p-8 border border-slate-700">
               <h3 className="text-2xl font-bold text-white mb-6">Solicite seu diagnóstico</h3>
               
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">
                     Nome completo *
@@ -53,7 +74,12 @@ const Contact = () => {
                   </label>
                   <input type="email" id="email" name="email" required value={formData.email} onChange={handleChange} className="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500" placeholder="seu@email.com" />
                 </div>
-                
+                <div>
+                <label htmlFor="tel" className="block text-sm font-medium text-gray-300 mb-2">
+                    Número de telefone *
+                  </label>
+                  <input type="tel" id="phone" name="phone" required value={formData.phone} onChange={handleChange} className="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500" placeholder="Seu contato" />
+                </div>
                 <div>
                   <label htmlFor="company" className="block text-sm font-medium text-gray-300 mb-2">
                     Empresa *
@@ -72,7 +98,7 @@ const Contact = () => {
                     <option value="consultoria-cloud">Consultoria de Segurança Cloud</option>
                     <option value="finops">FinOps - Gestão Cloud</option>
                     <option value="redes-onpremise">Segurança de Redes On-Premise</option>
-                    <option value="compliance">Compliance e Auditoria</option>
+                    <option value="compliance">Gestão de Cloud</option>
                   </select>
                 </div>
                 
@@ -82,7 +108,7 @@ const Contact = () => {
                   </label>
                   <textarea id="message" name="message" rows={4} value={formData.message} onChange={handleChange} className="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500" placeholder="Descreva brevemente suas necessidades ou ambiente atual"></textarea>
                 </div>
-                
+
                 <button type="submit" className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-4 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 flex items-center justify-center">
                   <Send className="mr-2 w-5 h-5" />
                   Solicitar Diagnóstico Gratuito
@@ -100,7 +126,7 @@ const Contact = () => {
                   <Mail className="w-6 h-6 text-blue-400 mr-4 mt-1" />
                   <div>
                     <h4 className="font-semibold text-white">E-mail</h4>
-                    <p className="text-gray-300">contato@segurancati.com</p>
+                    <p className="text-gray-300">contato@sentinelsec.com.br</p>
                   </div>
                 </div>
                 
@@ -108,7 +134,7 @@ const Contact = () => {
                   <Phone className="w-6 h-6 text-blue-400 mr-4 mt-1" />
                   <div>
                     <h4 className="font-semibold text-white">Telefone</h4>
-                    <p className="text-gray-300">+55 (11) 9999-9999</p>
+                    <p className="text-gray-300">+55 (62) 99651-8505</p>
                   </div>
                 </div>
                 
